@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/gallery`, lastModified: new Date() },
     { url: `${baseUrl}/roadmap`, lastModified: new Date() },
     { url: `${baseUrl}/community`, lastModified: new Date() },
+    { url: `${baseUrl}/contact`, lastModified: new Date() },
   ];
 }
 

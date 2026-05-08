@@ -7,6 +7,7 @@ import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { locales, type Locale } from "@/i18n/routing";
 import { useTheme } from "@/components/ThemeProvider";
 import { LINKS } from "@/data/links";
+import { Sun, Moon } from "lucide-react";
 
 function cx(...values: Array<string | false | null | undefined>) {
   return values.filter(Boolean).join(" ");
@@ -121,7 +122,7 @@ export function Navbar() {
             onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
             aria-label={t("nav.themeToggle")}
           >
-            {themeLabel}
+            {mounted && (resolvedTheme === "dark" ? <Sun size={18} /> : <Moon size={18} />)}
           </button>
 
           <select
@@ -190,7 +191,7 @@ export function Navbar() {
               onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
               aria-label={t("nav.themeToggle")}
             >
-              {themeLabel}
+              {mounted && (resolvedTheme === "dark" ? <Sun size={18} /> : <Moon size={18} />)}
             </button>
             <select
               className="rounded-md border border-border bg-surface-1 px-3 py-2 text-sm text-text hover:bg-surface-2"

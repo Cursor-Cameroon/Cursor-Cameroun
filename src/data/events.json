@@ -1,0 +1,125 @@
+[
+  {
+    "slug": "cafe-cursor-yaounde-01",
+    "name": "Café Cursor · Yaoundé #01",
+    "dateISO": "2026-04-17",
+    "city": "Yaoundé",
+    "venue": "Maison du café",
+    "shortDescription": "Découverte de Cursor, setup, workflows et mini-défis en binôme.",
+    "participants": 40,
+    "status": "past",
+    "lumaUrl": "https://lu.ma/cursor-cameroun-01",
+    "program": [
+      "Accueil & setup",
+      "Démos Cursor (prompts, agents, refactors)",
+      "Mini hack: page landing en 45 minutes",
+      "Partage projets & networking"
+    ],
+    "links": [
+      {
+        "label": "Inscription Luma",
+        "href": "https://lu.ma/cursor-cameroun-01"
+      }
+    ]
+  },
+  {
+    "slug": "night-of-code-yaounde-01",
+    "name": "Night of Code · Yaoundé #01",
+    "dateISO": "2026-06-07",
+    "city": "Yaoundé",
+    "venue": "Lieu à confirmer",
+    "shortDescription": "Soirée coding : construire un produit complet avec Cursor, en équipe.",
+    "participants": 60,
+    "status": "upcoming",
+    "lumaUrl": "https://lu.ma/cursor-cameroun-02"
+  },
+  {
+    "slug": "mini-hackathon-1",
+    "name": "Mini Hackathon #1 · Site officiel",
+    "dateISO": "2026-05-06",
+    "city": "En ligne",
+    "shortDescription": "Construire le site officiel de la communauté Cursor Cameroun en une semaine.",
+    "participants": 25,
+    "status": "upcoming",
+    "projects": [
+      {
+        "label": "Repo du site",
+        "href": "https://github.com/cursor-cameroun/official-site"
+      }
+    ],
+    "links": [
+      {
+        "label": "Cahier des charges",
+        "href": "/"
+      }
+    ],
+    "gallery": [
+      {
+        "src": "/gallery/HOME.png",
+        "alt": "HOME",
+        "caption": "Session de travail collective — Mini Hackathon #1, mai 2026"
+      },
+      {
+        "src": "/gallery/ROADMAP.png",
+        "alt": "Mini Hackathon #1 · revue de code en binôme",
+        "caption": "Revue de code et retours — Mini Hackathon #1"
+      },
+      {
+        "src": "/gallery/EVENTS.png",
+        "alt": "Mini Hackathon #1 · démo finale du site",
+        "caption": "Démonstration finale du site — Mini Hackathon #1"
+      }
+    ],
+    "venue": "",
+    "lumaUrl": ""
+  },
+  {
+    "slug": "cafe-cursor-yaounde-00",
+    "name": "Café Cursor · Yaoundé #01",
+    "dateISO": "2026-04-17",
+    "city": "En ligne",
+    "shortDescription": "Construire le site officiel de la communauté Cursor Cameroun en une semaine.",
+    "participants": 25,
+    "status": "past",
+    "projects": [
+      {
+        "label": "Repo du site",
+        "href": "https://github.com/cursor-cameroun/official-site"
+      }
+    ],
+    "links": [
+      {
+        "label": "Cahier des charges",
+        "href": "/"
+      }
+    ],
+    "gallery": [
+      {
+        "src": "/gallery/session-travail.png",
+        "alt": "Café Cursor · Yaoundé #01 · session de travail collective",
+        "caption": "Session de travail collective — Café Cursor · Yaoundé #01, mai 2026"
+      },
+      {
+        "src": "/gallery/revue-code.png",
+        "alt": "Café Cursor · Yaoundé #01 · revue de code en binôme",
+        "caption": "Revue de code et retours — Café Cursor · Yaoundé #01"
+      },
+      {
+        "src": "/gallery/demo-finale.png",
+        "alt": "Café Cursor · Yaoundé #01 · démo finale du site",
+        "caption": "Démonstration finale du site — Café Cursor · Yaoundé #01"
+      }
+    ]
+  },
+  {
+    "slug": "cafe-cursor-douala-01",
+    "name": "Café cursor Douala",
+    "dateISO": "2026-06-10",
+    "city": "Douala",
+    "venue": "Lieu à confirmer",
+    "shortDescription": "moment de detente et presentation",
+    "participants": 100,
+    "status": "upcoming",
+    "lumaUrl": "https://lu.ma/cursor-cameroun-01"
+  }
+]

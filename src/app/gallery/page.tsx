@@ -1,5 +1,5 @@
 import { getTranslations, getLocale } from "next-intl/server";
-import { EVENTS } from "@/data/events";
+import { getEvents } from "@/data/events";
 import { GalleryGrid, type GalleryPhoto } from "@/components/GalleryGrid";
 import { FadeIn } from "@/components/FadeIn";
 
@@ -21,7 +21,8 @@ export default async function GalleryPage({
   const filter = typeof sp.event === "string" ? sp.event : "all";
   const dateFilter = typeof sp.date === "string" ? sp.date : "all";
 
-  const photos: GalleryPhoto[] = EVENTS.flatMap((e) =>
+  const allEvents = getEvents();
+  const photos: GalleryPhoto[] = allEvents.flatMap((e) =>
     (e.gallery ?? []).map((g) => ({
       src: g.src,
       alt: g.alt,
@@ -39,7 +40,7 @@ export default async function GalleryPage({
       (dateFilter === "all" || p.dateISO.startsWith(dateFilter)),
   );
 
-  const eventOptions = EVENTS.filter((e) => (e.gallery ?? []).length > 0).map(
+  const eventOptions = allEvents.filter((e) => (e.gallery ?? []).length > 0).map(
     (e) => ({ slug: e.slug, name: e.name }),
   );
 

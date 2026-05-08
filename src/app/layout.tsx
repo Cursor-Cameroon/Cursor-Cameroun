@@ -64,7 +64,11 @@ export default async function RootLayout({
                   height={19}
                   className="brand-logo-dark"
                 />
-                <p className="mt-1">Cursor Cameroun · © {new Date().getFullYear()}</p>
+                <p className="mt-1 flex items-center gap-2">
+                  Cursor Cameroun · © {new Date().getFullYear()}
+                  <span className="text-border">|</span>
+                  <a href="/fr/admin/events" className="hover:text-text transition-colors">Admin</a>
+                </p>
               </div>
               <p className="text-text-2">{t("footer.line")}</p>
             </div>

@@ -25,7 +25,7 @@ export async function POST(req: Request) {
 
     const { data, error } = await resend.emails.send({
       from: "Cursor Cameroun <onboarding@resend.dev>",
-      to: ["hello@cursor-cameroun.org"],
+      to: [process.env.CONTACT_EMAIL || "hello@cursor-cameroun.org"],
       subject: `[Contact Form] ${subject}`,
       replyTo: email,
       text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
@@ -46,6 +46,7 @@ export async function POST(req: Request) {
     });
 
     if (error) {
+      console.error("Resend API Error:", error);
       return NextResponse.json({ error }, { status: 400 });
     }
 

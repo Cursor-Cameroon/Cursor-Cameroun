@@ -63,7 +63,9 @@ export default async function EventsPage({
               <div className="flex items-start justify-between gap-3">
                 <h2 className="text-base font-semibold text-text">{e.name}</h2>
                 <span className="rounded-full border border-border bg-surface-2 px-2 py-0.5 text-xs text-text-2">
-                  {e.status === "upcoming"
+                  {e.status === "ongoing"
+                    ? t("events.statusOngoing")
+                    : e.status === "upcoming"
                     ? t("events.statusUpcoming")
                     : t("events.statusPast")}
                 </span>
