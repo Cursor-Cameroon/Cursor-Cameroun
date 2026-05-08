@@ -1,13 +1,14 @@
 import { getTranslations } from "next-intl/server";
 import { LINKS } from "@/data/links";
-import { EVENTS } from "@/data/events";
+import { getEvents } from "@/data/events";
 import { FadeIn, FadeInStagger } from "@/components/FadeIn";
 
 export default async function CommunityPage() {
   const t = await getTranslations();
+  const events = getEvents();
   const projects = Array.from(
     new Map(
-      EVENTS.flatMap((e) => e.projects ?? [])
+      events.flatMap((e) => e.projects ?? [])
         .filter(Boolean)
         .map((p) => [p.href, p]),
     ).values(),

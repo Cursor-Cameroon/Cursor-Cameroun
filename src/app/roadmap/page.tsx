@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { EVENTS } from "@/data/events";
+import { getEvents } from "@/data/events";
 import { CITY_POINTS, GOALS_2026 } from "@/data/roadmap";
 import { RoadmapMapSection } from "@/components/RoadmapMapSection";
 import { FadeIn, FadeInStagger } from "@/components/FadeIn";
@@ -18,13 +18,15 @@ export default async function RoadmapPage({
   const sp = (await searchParams) ?? {};
   const selectedCityId = typeof sp.city === "string" ? sp.city : null;
 
+  const events = getEvents();
+
   const selectedCity = CITY_POINTS.find((c) => c.id === selectedCityId) ?? null;
   const cityName = selectedCity?.name ?? null;
   const cityEvents = cityName
-    ? EVENTS.filter((e) => e.city === cityName)
+    ? events.filter((e) => e.city === cityName)
     : [];
 
-  const timeline = [...EVENTS].sort((a, b) => a.dateISO.localeCompare(b.dateISO));
+  const timeline = [...events].sort((a, b) => a.dateISO.localeCompare(b.dateISO));
 
   return (
     <div className="flex flex-col gap-10">
