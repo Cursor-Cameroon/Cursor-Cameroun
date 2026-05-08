@@ -1,0 +1,119 @@
+{
+  "meta": {
+    "siteName": "Cursor Cameroun",
+    "tagline": "La communauté officielle Cursor au Cameroun.",
+    "description": "Événements, roadmap territoriale, projets open source et infos pour rejoindre Cursor Cameroun."
+  },
+  "footer": {
+    "line": "Noir · Blanc · Gris — Charte Cursor"
+  },
+  "nav": {
+    "home": "Accueil",
+    "events": "Événements",
+    "gallery": "Galerie",
+    "roadmap": "Roadmap",
+    "community": "Communauté",
+    "join": "Rejoindre",
+    "themeToggle": "Changer le thème",
+    "themeDark": "Sombre",
+    "themeLight": "Clair",
+    "language": "Langue",
+    "menuOpen": "Ouvrir le menu",
+    "menuClose": "Fermer le menu"
+  },
+  "home": {
+    "heroTitle": "Cursor Cameroun",
+    "heroSubtitle": "Construisons plus vite, ensemble, avec l’IA.",
+    "heroCta": "Rejoindre WhatsApp",
+    "statsMembers": "membres",
+    "statsEvents": "événements",
+    "statsCities": "villes couvertes",
+    "sectionAboutTitle": "À propos",
+    "sectionAboutBody": "Cursor Cameroun rassemble des développeurs de tous niveaux autour du développement assisté par l’IA. Nous organisons des meetups, cafés Cursor, nights of code et hackathons à travers le pays.",
+    "sectionNextEventsTitle": "Prochains événements",
+    "upcomingHintSome": "3 prochains événements.",
+    "upcomingHintNone": "Les prochains événements arrivent bientôt.",
+    "sectionPastHighlightsTitle": "Highlights",
+    "closingCtaTitle": "Prêt à rejoindre la communauté ?",
+    "closingCtaBody": "Rejoins-nous sur WhatsApp pour recevoir les annonces, participer aux événements et contribuer aux projets.",
+    "closingCtaButton": "Rejoindre maintenant"
+  },
+  "events": {
+    "title": "Événements",
+    "intro": "Filtrez les événements et ouvrez la page détail pour le programme, photos et projets.",
+    "upcoming": "À venir",
+    "past": "Passés",
+    "register": "S’inscrire (Luma)",
+    "viewDetails": "Voir détails",
+    "participants": "participants",
+    "statusUpcoming": "À venir",
+    "statusPast": "Terminé",
+    "detailProgram": "Programme",
+    "detailProjects": "Projets construits",
+    "detailLinks": "Liens",
+    "detailPhotos": "Photos"
+  },
+  "gallery": {
+    "title": "Galerie",
+    "subtitle": "Photos organisées par événement, chargement paresseux et lightbox.",
+    "filterAll": "Tout",
+    "filterByDate": "Par date :",
+    "filterAllDates": "Toutes dates",
+    "close": "Fermer",
+    "lightboxLabel": "Agrandissement de photo",
+    "empty": "Aucune photo pour le moment. Ajoutez des images WebP/AVIF dans /public/gallery/ et mettez à jour les données."
+  },
+  "map": {
+    "title": "Cameroun",
+    "subtitle": "Survolez une ville, cliquez pour voir les événements associés.",
+    "eventsCount": "{count, plural, =0 {0 événement} one {# événement} other {# événements}}",
+    "membersCount": "{count, plural, =0 {0 membre} one {# membre} other {# membres}}",
+    "statusLabel": "Statut:",
+    "statusCovered": "couvert",
+    "statusTarget": "cible"
+  },
+  "roadmap": {
+    "title": "Roadmap",
+    "subtitle": "Couverture territoriale et étapes 2026.",
+    "ambitionsTitle": "Ambitions 2026",
+    "ambition1": "Déployer des événements dans plusieurs régions",
+    "ambition2": "Multiplier les hackathons et nights of code",
+    "ambition3": "Renforcer l’open source et la documentation",
+    "cityEventsTitle": "Événements · {city}",
+    "cityEventsEmpty": "Aucun événement listé pour le moment.",
+    "selectedCityLabel": "Ville sélectionnée :",
+    "timelineTitle": "Timeline",
+    "progressTitle": "Progression"
+  },
+  "community": {
+    "title": "Communauté",
+    "subtitle": "Mission, valeurs, liens officiels et projets open source.",
+    "missionTitle": "Mission & valeurs",
+    "joinTitle": "Comment rejoindre",
+    "githubTitle": "Open Source",
+    "linksTitle": "Liens",
+    "mission1": "Apprendre et partager des workflows Cursor, du débutant à l’expert.",
+    "mission2": "Construire des projets concrets (meetups, nights of code, hackathons).",
+    "mission3": "Développer une présence territoriale (villes et régions).",
+    "mission4": "Promouvoir l’open source et la collaboration.",
+    "joinBody": "Le canal principal de la communauté est WhatsApp. Rejoignez le groupe pour recevoir les annonces et participer.",
+    "noProjects": "Aucun projet listé pour le moment.",
+    "orgGithub": "Organisation GitHub",
+    "groupWhatsapp": "Groupe WhatsApp"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Une question ? Une proposition ? Écrivez-nous.",
+    "formName": "Nom complet",
+    "formEmail": "Email",
+    "formSubject": "Objet",
+    "formMessage": "Message",
+    "formSubmit": "Envoyer le message",
+    "formSending": "Envoi en cours...",
+    "successTitle": "Message envoyé !",
+    "successBody": "Merci de nous avoir contactés. Nous vous répondrons dès que possible.",
+    "errorTitle": "Erreur",
+    "errorBody": "Une erreur est survenue lors de l'envoi. Veuillez réessayer."
+  }
+}
+

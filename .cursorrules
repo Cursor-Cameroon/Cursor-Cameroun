@@ -1,0 +1,7 @@
+- Le site Cursor Cameroun doit respecter strictement la charte Cursor : noir/blanc/gris uniquement.
+- Aucun accent de couleur (hover, focus, badges, graphiques). Toujours rester dans le spectre N&B.
+- Prioriser l’accessibilité (focus-visible, contraste, navigation clavier) et la performance (images WebP/AVIF, lazy-loading).
+- Les pages doivent être entièrement traduites en FR/EN via `next-intl`.
+- Le thème sombre est le défaut, thème clair optionnel (toujours N&B).
+- Architecture modulaire : composants réutilisables, données centralisées dans `src/data/`.
+- SEO : metadata par page + sitemap/robots.

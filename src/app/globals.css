@@ -1,26 +1,92 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --cursor-bg: #ffffff;
+  --cursor-bg-2: #f5f5f5;
+  --cursor-surface-1: #ffffff;
+  --cursor-surface-2: #f5f5f5;
+  --cursor-border: #e5e5e5;
+  --cursor-text: #000000;
+  --cursor-text-2: #555555;
+  --cursor-ring: #2a2a2a;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--cursor-bg);
+  --color-bg-2: var(--cursor-bg-2);
+  --color-surface-1: var(--cursor-surface-1);
+  --color-surface-2: var(--cursor-surface-2);
+  --color-border: var(--cursor-border);
+  --color-text: var(--cursor-text);
+  --color-text-2: var(--cursor-text-2);
+  --color-ring: var(--cursor-ring);
+  --font-sans: ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "Courier New", monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root.dark {
+  --cursor-bg: #000000;
+  --cursor-bg-2: #0a0a0a;
+  --cursor-surface-1: #111111;
+  --cursor-surface-2: #1a1a1a;
+  --cursor-border: #2a2a2a;
+  --cursor-text: #ffffff;
+  --cursor-text-2: #a0a0a0;
+  --cursor-ring: #a0a0a0;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--cursor-bg);
+  color: var(--cursor-text);
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Base */
+* {
+  border-color: var(--cursor-border);
+}
+
+a {
+  text-underline-offset: 3px;
+}
+
+/* Accessibilité : focus visible, monochrome */
+:where(a, button, input, select, textarea, [role="button"], [tabindex]):focus-visible {
+  outline: 2px solid var(--cursor-ring);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--cursor-text) 15%, transparent);
+}
+
+/* Logo adaptatif : CSS bascule entre variante dark et light sans flash d'hydratation */
+.brand-logo-light { display: inline-flex; }
+.brand-logo-dark  { display: none; }
+:root.dark .brand-logo-light { display: none; }
+:root.dark .brand-logo-dark  { display: inline-flex; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseRing {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  35% {
+    opacity: 0.55;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.35);
+  }
 }

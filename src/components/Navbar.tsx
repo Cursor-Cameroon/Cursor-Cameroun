@@ -1,0 +1,224 @@
+"use client";
+
+import { useMemo, useState, useSyncExternalStore } from "react";
+import Image from "next/image";
+import { useTranslations, useLocale } from "next-intl";
+import { Link, usePathname, useRouter } from "@/i18n/navigation";
+import { locales, type Locale } from "@/i18n/routing";
+import { useTheme } from "@/components/ThemeProvider";
+import { LINKS } from "@/data/links";
+
+function cx(...values: Array<string | false | null | undefined>) {
+  return values.filter(Boolean).join(" ");
+}
+
+function HamburgerIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+      <path
+        d="M2 4.5h14M2 9h14M2 13.5h14"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function CloseIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+      <path
+        d="M3.75 3.75l10.5 10.5M14.25 3.75L3.75 14.25"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+export function Navbar() {
+  const t = useTranslations();
+  const pathname = usePathname();
+  const router = useRouter();
+  const locale = useLocale() as Locale;
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
+
+  const themeLabel = mounted
+    ? (resolvedTheme === "dark" ? t("nav.themeDark") : t("nav.themeLight"))
+    : null;
+
+  const items = useMemo(
+    () => [
+      { href: "/", label: t("nav.home") },
+      { href: "/events", label: t("nav.events") },
+      { href: "/gallery", label: t("nav.gallery") },
+      { href: "/roadmap", label: t("nav.roadmap") },
+      { href: "/community", label: t("nav.community") },
+      { href: "/contact", label: t("contact.title") },
+    ],
+    [t],
+  );
+
+  return (
+    <header className="sticky top-0 z-50 border-b border-border bg-bg/80 backdrop-blur supports-[backdrop-filter]:bg-bg/60">
+      {/* Barre principale */}
+      <div className="mx-auto flex w-full max-w-6xl items-center gap-4 px-4 py-3">
+        <Link
+          href="/"
+          className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium tracking-tight text-text hover:bg-surface-2"
+        >
+          {/* Logo officiel Cursor — version light sur fond clair, dark sur fond sombre */}
+          <Image
+            src="/brand/APP_ICON_2D_LIGHT.png"
+            alt="Cursor"
+            width={20}
+            height={20}
+            className="brand-logo-light shrink-0"
+          />
+          <Image
+            src="/brand/APP_ICON_2D_DARK.png"
+            alt=""
+            aria-hidden="true"
+            width={20}
+            height={20}
+            className="brand-logo-dark shrink-0"
+          />
+          Cursor Cameroun
+        </Link>
+
+        {/* Navigation desktop */}
+        <nav className="hidden flex-1 items-center gap-1 md:flex">
+          {items.map((it) => {
+            const active = pathname === it.href;
+            return (
+              <Link
+                key={it.href}
+                href={it.href}
+                className={cx(
+                  "rounded-md px-3 py-2 text-sm text-text-2 hover:bg-surface-2 hover:text-text",
+                  active && "bg-surface-2 text-text",
+                )}
+              >
+                {it.label}
+              </Link>
+            );
+          })}
+        </nav>
+
+        {/* Actions desktop + bouton hamburger mobile */}
+        <div className="ml-auto flex items-center gap-2">
+          <button
+            type="button"
+            className="hidden rounded-md border border-border bg-surface-1 px-3 py-2 text-sm text-text hover:bg-surface-2 md:inline-flex"
+            onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+            aria-label={t("nav.themeToggle")}
+          >
+            {themeLabel}
+          </button>
+
+          <select
+            className="hidden rounded-md border border-border bg-surface-1 px-3 py-2 text-sm text-text hover:bg-surface-2 md:block"
+            value={locale}
+            onChange={(e) => {
+              const next = e.target.value as Locale;
+              router.replace(pathname, { locale: next });
+            }}
+            aria-label={t("nav.language")}
+          >
+            {locales.map((l) => (
+              <option key={l} value={l}>
+                {l.toUpperCase()}
+              </option>
+            ))}
+          </select>
+
+          <a
+            className="hidden items-center justify-center rounded-md bg-text px-3 py-2 text-sm font-medium text-bg hover:opacity-90 md:inline-flex"
+            href={LINKS.whatsapp}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {t("nav.join")}
+          </a>
+
+          {/* Hamburger — mobile uniquement */}
+          <button
+            type="button"
+            className="rounded-md border border-border bg-surface-1 p-2 text-text hover:bg-surface-2 md:hidden"
+            onClick={() => setMobileOpen((v) => !v)}
+            aria-label={mobileOpen ? t("nav.menuClose") : t("nav.menuOpen")}
+            aria-expanded={mobileOpen}
+          >
+            {mobileOpen ? <CloseIcon /> : <HamburgerIcon />}
+          </button>
+        </div>
+      </div>
+
+      {/* Menu mobile déroulant */}
+      {mobileOpen && (
+        <div className="border-t border-border bg-bg md:hidden">
+          <nav className="flex flex-col gap-1 px-4 py-3">
+            {items.map((it) => {
+              const active = pathname === it.href;
+              return (
+                <Link
+                  key={it.href}
+                  href={it.href}
+                  className={cx(
+                    "rounded-md px-3 py-2 text-sm text-text-2 hover:bg-surface-2 hover:text-text",
+                    active && "bg-surface-2 text-text",
+                  )}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {it.label}
+                </Link>
+              );
+            })}
+          </nav>
+          <div className="flex items-center gap-2 border-t border-border px-4 py-3">
+            <button
+              type="button"
+              className="rounded-md border border-border bg-surface-1 px-3 py-2 text-sm text-text hover:bg-surface-2"
+              onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+              aria-label={t("nav.themeToggle")}
+            >
+              {themeLabel}
+            </button>
+            <select
+              className="rounded-md border border-border bg-surface-1 px-3 py-2 text-sm text-text hover:bg-surface-2"
+              value={locale}
+              onChange={(e) => {
+                const next = e.target.value as Locale;
+                router.replace(pathname, { locale: next });
+              }}
+              aria-label={t("nav.language")}
+            >
+              {locales.map((l) => (
+                <option key={l} value={l}>
+                  {l.toUpperCase()}
+                </option>
+              ))}
+            </select>
+            <a
+              className="ml-auto inline-flex items-center justify-center rounded-md bg-text px-3 py-2 text-sm font-medium text-bg hover:opacity-90"
+              href={LINKS.whatsapp}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => setMobileOpen(false)}
+            >
+              {t("nav.join")}
+            </a>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+}
