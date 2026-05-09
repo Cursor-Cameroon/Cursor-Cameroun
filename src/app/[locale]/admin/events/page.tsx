@@ -95,8 +95,8 @@ export default function AdminEventsPage() {
         </header>
       </FadeIn>
 
-      <div className="rounded-lg border border-border bg-surface-1 overflow-hidden">
-        <table className="w-full text-left text-sm">
+      <div className="rounded-lg border border-border bg-surface-1 overflow-x-auto">
+        <table className="w-full text-left text-sm whitespace-nowrap">
           <thead className="bg-surface-2 text-text-2 border-b border-border">
             <tr>
               <th className="px-6 py-4 font-medium">Nom</th>

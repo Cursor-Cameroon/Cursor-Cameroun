@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { LINKS } from "@/data/links";
-import { Github, Twitter, MessageCircle, MapPin, Mail, Globe } from "lucide-react";
+import { Code, MessageCircle, MapPin, Mail, Globe } from "lucide-react";
 
 export function Footer() {
   const t = useTranslations();
@@ -34,8 +34,8 @@ export function Footer() {
               La communauté officielle Cursor au Cameroun. Nous rassemblons les passionnés de développement assisté par l'IA pour bâtir le futur de la tech africaine.
             </p>
             <div className="flex items-center gap-4">
-              <a href={LINKS.github} target="_blank" rel="noreferrer" className="p-2 rounded-full bg-surface-2 text-text-2 hover:text-text hover:bg-border transition-all">
-                <Github size={18} />
+              <a href={LINKS.githubOrg} target="_blank" rel="noreferrer" className="p-2 rounded-full bg-surface-2 text-text-2 hover:text-text hover:bg-border transition-all">
+                <Code size={18} />
               </a>
               <a href={LINKS.whatsapp} target="_blank" rel="noreferrer" className="p-2 rounded-full bg-surface-2 text-text-2 hover:text-text hover:bg-border transition-all">
                 <MessageCircle size={18} />
