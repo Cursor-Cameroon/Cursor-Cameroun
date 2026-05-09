@@ -89,8 +89,6 @@ export function Navbar() {
 
       if (isAdmin) {
         baseItems.push({ href: "/admin/events", label: "Admin" });
-      } else {
-        baseItems.push({ href: "/contact", label: t("contact.title") });
       }
 
       return baseItems;
