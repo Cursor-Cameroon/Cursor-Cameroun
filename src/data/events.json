@@ -1,15 +1,15 @@
 [
   {
     "slug": "cafe-cursor-yaounde-01",
-    "name": "Café Cursor · Yaoundé #01",
-    "dateISO": "2026-04-17",
-    "startDateISO": "2026-04-17",
-    "endDateISO": "2026-04-17",
+    "name": "Café Cursor · Yaoundé #02",
+    "dateISO": "2026-06-17",
+    "startDateISO": "2026-06-17",
+    "endDateISO": "2026-06-17",
     "city": "Yaoundé",
-    "venue": "Maison du café",
+    "venue": "Lieu à confirmer",
     "shortDescription": "Découverte de Cursor, setup, workflows et mini-défis en binôme.",
-    "participants": 40,
-    "status": "past",
+    "participants": 50,
+    "status": "upcoming",
     "lumaUrl": "https://lu.ma/cursor-cameroun-01",
     "program": [
       "Accueil & setup",
@@ -22,7 +22,9 @@
         "label": "Inscription Luma",
         "href": "https://lu.ma/cursor-cameroun-01"
       }
-    ]
+    ],
+    "gallery": [],
+    "coverImage": "https://res.cloudinary.com/dpsgcq2lm/image/upload/v1778332023/tiwnvanhbvjmxggugddp.jpg"
   },
   {
     "slug": "night-of-code-yaounde-01",
@@ -40,9 +42,9 @@
   {
     "slug": "mini-hackathon-1",
     "name": "Mini Hackathon #1 · Site officiel",
-    "dateISO": "2026-05-06",
-    "startDateISO": "2026-05-06",
-    "endDateISO": "2026-05-12",
+    "dateISO": "2026-04-06",
+    "startDateISO": "2026-04-06",
+    "endDateISO": "2026-05-10",
     "city": "En ligne",
     "shortDescription": "Construire le site officiel de la communauté Cursor Cameroun en une semaine.",
     "participants": 25,
@@ -91,7 +93,7 @@
     "dateISO": "2026-04-17",
     "startDateISO": "2026-04-17",
     "endDateISO": "2026-04-17",
-    "city": "En ligne",
+    "city": "Yaounde",
     "shortDescription": "Construire le site officiel de la communauté Cursor Cameroun en une semaine.",
     "participants": 25,
     "status": "past",
@@ -124,7 +126,7 @@
         "caption": "Démonstration finale du site — Café Cursor · Yaoundé #01"
       }
     ],
-    "venue": "",
+    "venue": "Maison du café",
     "lumaUrl": "",
     "coverImage": "https://res.cloudinary.com/dpsgcq2lm/image/upload/v1778318854/on1mcb5by8tr4wvbgxoj.jpg"
   },
