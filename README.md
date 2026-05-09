@@ -35,3 +35,16 @@ Puis ouvrir `http://localhost:3000`.
 - `.cursorrules` : règles projet Cursor
 - `AGENT.md` : usage de Cursor pendant le hackathon
 - SEO : `src/app/sitemap.ts` + `src/app/robots.ts`
+
+## Galerie & Aperçus de Travail
+
+Voici quelques captures d'écran illustrant notre travail collaboratif avec Cursor :
+
+### Édition du AGENT.md
+![Agent MD](cursor-cameroun/public/gallery/AGENT.png)
+
+### Mise à jour du README
+![README](/gallery/README.png)
+
+### Session de Travail
+![Session de Travail](/gallery/WORK.png)

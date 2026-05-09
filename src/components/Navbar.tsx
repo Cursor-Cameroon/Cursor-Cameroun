@@ -7,7 +7,8 @@ import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { locales, type Locale } from "@/i18n/routing";
 import { useTheme } from "@/components/ThemeProvider";
 import { LINKS } from "@/data/links";
-import { Sun, Moon } from "lucide-react";
+import { Sun, Moon, LogOut, ShieldCheck } from "lucide-react";
+import { useEffect } from "react";
 
 function cx(...values: Array<string | false | null | undefined>) {
   return values.filter(Boolean).join(" ");
@@ -52,20 +53,49 @@ export function Navbar() {
     () => false,
   );
 
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    // Basic check for cookie on client side
+    const checkAdmin = () => {
+      setIsAdmin(document.cookie.includes("admin_session=true"));
+    };
+    checkAdmin();
+    // Check every few seconds or on focus to stay in sync
+    const interval = setInterval(checkAdmin, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  async function handleLogout() {
+    await fetch("/api/auth/logout", { method: "POST" });
+    setIsAdmin(false);
+    router.push("/");
+    router.refresh();
+  }
+
   const themeLabel = mounted
     ? (resolvedTheme === "dark" ? t("nav.themeDark") : t("nav.themeLight"))
     : null;
 
   const items = useMemo(
-    () => [
-      { href: "/", label: t("nav.home") },
-      { href: "/events", label: t("nav.events") },
-      { href: "/gallery", label: t("nav.gallery") },
-      { href: "/roadmap", label: t("nav.roadmap") },
-      { href: "/community", label: t("nav.community") },
-      { href: "/contact", label: t("contact.title") },
-    ],
-    [t],
+    () => {
+      const baseItems = [
+        { href: "/", label: t("nav.home") },
+        { href: "/events", label: t("nav.events") },
+        { href: "/gallery", label: t("nav.gallery") },
+        { href: "/roadmap", label: t("nav.roadmap") },
+        { href: "/community", label: t("nav.community") },
+      ];
+
+      if (isAdmin) {
+        baseItems.push({ href: "/admin/events", label: "Admin" });
+      } else {
+        baseItems.push({ href: "/contact", label: t("contact.title") });
+      }
+
+      return baseItems;
+    },
+    [t, isAdmin],
   );
 
   return (
@@ -150,6 +180,16 @@ export function Navbar() {
             {t("nav.join")}
           </a>
 
+          {isAdmin && (
+            <button
+              onClick={handleLogout}
+              className="hidden items-center justify-center rounded-md border border-border bg-surface-1 p-2 text-text-2 hover:text-red-500 hover:bg-surface-2 md:inline-flex"
+              title="Déconnexion"
+            >
+              <LogOut size={18} />
+            </button>
+          )}
+
           {/* Hamburger — mobile uniquement */}
           <button
             type="button"
@@ -208,6 +248,14 @@ export function Navbar() {
                 </option>
               ))}
             </select>
+            {isAdmin && (
+              <button
+                onClick={handleLogout}
+                className="rounded-md border border-border bg-surface-1 px-3 py-2 text-sm text-text-2 hover:text-red-500 hover:bg-surface-2"
+              >
+                Déconnexion
+              </button>
+            )}
             <a
               className="ml-auto inline-flex items-center justify-center rounded-md bg-text px-3 py-2 text-sm font-medium text-bg hover:opacity-90"
               href={LINKS.whatsapp}

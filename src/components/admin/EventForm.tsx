@@ -21,6 +21,7 @@ const eventSchema = z.object({
     alt: z.string().min(1, "Alt text is required"),
     caption: z.string().optional(),
   })).optional(),
+  coverImage: z.string().optional(),
 });
 
 type EventFormProps = {
@@ -132,6 +133,15 @@ export function EventForm({ initialData, onSubmit, onCancel, isSubmitting }: Eve
           />
           {errors.lumaUrl && <span className="text-[10px] text-red-500">{errors.lumaUrl.message as string}</span>}
         </div>
+
+        <div className="flex flex-col gap-1">
+          <label className="text-xs font-medium text-text-2">Image de Couverture (URL)</label>
+          <input
+            {...register("coverImage")}
+            placeholder="https://images.unsplash.com/..."
+            className="rounded-md border border-border bg-surface-1 px-3 py-2 text-sm text-text focus:outline-none focus:ring-1 focus:ring-ring"
+          />
+        </div>
       </div>
 
       <div className="flex flex-col gap-1">
@@ -170,10 +180,10 @@ export function EventForm({ initialData, onSubmit, onCancel, isSubmitting }: Eve
               </button>
               <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
                 <div className="flex flex-col gap-1">
-                  <label className="text-[10px] font-medium text-text-2 uppercase">Source (URL/Path)</label>
+                  <label className="text-[10px] font-medium text-text-2 uppercase">Source (URL Externe ou Chemin /gallery/...)</label>
                   <input
                     {...register(`gallery.${index}.src`)}
-                    placeholder="/gallery/photo.png"
+                    placeholder="https://... ou /gallery/photo.png"
                     className="rounded-md border border-border bg-surface-1 px-2 py-1.5 text-xs text-text focus:outline-none"
                   />
                 </div>

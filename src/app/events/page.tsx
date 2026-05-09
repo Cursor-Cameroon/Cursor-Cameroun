@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getPastEvents, getUpcomingEvents } from "@/data/events";
 import { FadeIn, FadeInStagger } from "@/components/FadeIn";
+import Image from "next/image";
 
 export default async function EventsPage({
   searchParams,
@@ -58,8 +59,19 @@ export default async function EventsPage({
         {events.map((e) => (
           <FadeIn key={e.slug}>
             <article
-              className="rounded-lg border border-border bg-surface-1 p-6 transition-transform hover:scale-[1.01]"
+              className="group overflow-hidden rounded-lg border border-border bg-surface-1 transition-all hover:border-text/20 hover:shadow-lg"
             >
+              {e.coverImage && (
+                <div className="relative aspect-video w-full overflow-hidden">
+                  <Image
+                    src={e.coverImage}
+                    alt={e.name}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+              )}
+              <div className="p-6">
               <div className="flex items-start justify-between gap-3">
                 <h2 className="text-base font-semibold text-text">{e.name}</h2>
                 <span className="rounded-full border border-border bg-surface-2 px-2 py-0.5 text-xs text-text-2">
@@ -94,6 +106,7 @@ export default async function EventsPage({
                     {t("events.register")}
                   </a>
                 ) : null}
+              </div>
               </div>
             </article>
           </FadeIn>

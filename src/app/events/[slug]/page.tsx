@@ -16,7 +16,19 @@ export default async function EventDetailPage({
 
   return (
     <div className="flex flex-col gap-10">
-      <header className="rounded-xl border border-border bg-bg-2 p-8">
+      <header className="overflow-hidden rounded-xl border border-border bg-bg-2">
+        {event.coverImage && (
+          <div className="relative aspect-[21/9] w-full overflow-hidden border-b border-border">
+            <Image
+              src={event.coverImage}
+              alt={event.name}
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+        )}
+        <div className="p-8">
         <p className="text-sm text-text-2">
           {event.city} · {event.dateISO}
           {event.venue ? ` · ${event.venue}` : ""}
@@ -49,6 +61,7 @@ export default async function EventDetailPage({
               {t("events.register")}
             </a>
           ) : null}
+        </div>
         </div>
       </header>
 
