@@ -15,6 +15,17 @@ export type CityPoint = {
 };
 
 type LonLat = readonly [number, number];
+type RegionId =
+  | "adamawa"
+  | "centre"
+  | "east"
+  | "farNorth"
+  | "littoral"
+  | "north"
+  | "northWest"
+  | "west"
+  | "south"
+  | "southWest";
 
 const MAP_WIDTH = 100;
 const MAP_HEIGHT = 148;
@@ -98,6 +109,19 @@ const CITY_COORDINATES: Record<string, LonLat> = {
   ebolowa: [11.15, 2.9167],
 };
 
+const REGION_DEFINITIONS: ReadonlyArray<{ id: RegionId; regionFr: string; coordinate: LonLat }> = [
+  { id: "farNorth", regionFr: "Extrême-Nord", coordinate: [14.3227, 10.591] },
+  { id: "north", regionFr: "Nord", coordinate: [13.3943, 9.3014] },
+  { id: "adamawa", regionFr: "Adamaoua", coordinate: [13.5833, 7.3167] },
+  { id: "northWest", regionFr: "Nord-Ouest", coordinate: [10.1591, 5.9631] },
+  { id: "west", regionFr: "Ouest", coordinate: [10.4176, 5.4778] },
+  { id: "littoral", regionFr: "Littoral", coordinate: [9.7043, 4.0511] },
+  { id: "southWest", regionFr: "Sud-Ouest", coordinate: [9.2319, 4.1534] },
+  { id: "centre", regionFr: "Centre", coordinate: [11.5021, 3.848] },
+  { id: "east", regionFr: "Est", coordinate: [13.6833, 4.5833] },
+  { id: "south", regionFr: "Sud", coordinate: [11.15, 2.9167] },
+];
+
 const LABEL_OFFSETS: Record<string, readonly [number, number]> = {
   yaounde: [3, 5],
   douala: [3, -3],
@@ -165,6 +189,20 @@ export function CameroonMap({
     [points, selectedId],
   );
 
+  const regions = useMemo(
+    () =>
+      REGION_DEFINITIONS.map((region) => {
+        const relatedPoints = points.filter((p) => p.region === region.regionFr);
+        return {
+          ...region,
+          covered: relatedPoints.some((p) => p.kind === "active"),
+        };
+      }),
+    [points],
+  );
+
+  const coveredRegions = regions.filter((region) => region.covered).length;
+
   return (
     <div className="relative w-full overflow-hidden rounded-lg border border-border bg-surface-1 p-5">
       <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
@@ -191,7 +229,7 @@ export function CameroonMap({
           viewBox={`0 0 ${MAP_WIDTH} ${MAP_HEIGHT}`}
           className="mx-auto h-auto max-h-[430px] w-full"
           role="img"
-          aria-label="Carte du Cameroun avec les villes de la communauté"
+          aria-label="Carte du Cameroun avec les 10 régions et les villes de la communauté"
         >
           <g className="origin-center animate-[fadeInUp_900ms_ease-out]">
             <path
@@ -201,6 +239,27 @@ export function CameroonMap({
               strokeWidth="1.5"
               vectorEffect="non-scaling-stroke"
             />
+
+            {regions.map((region) => {
+              const position = project(region.coordinate);
+              return (
+                <g key={region.id}>
+                  <circle
+                    cx={position.x}
+                    cy={position.y}
+                    r="1.2"
+                    className={region.covered ? "fill-[var(--cursor-text)]" : "fill-[var(--cursor-text-2)]"}
+                  />
+                  <text
+                    x={position.x + 1.8}
+                    y={position.y - 1.2}
+                    className="pointer-events-none fill-[var(--cursor-text-2)] text-[2.5px]"
+                  >
+                    {t(`map.regionShort.${region.id}`)}
+                  </text>
+                </g>
+              );
+            })}
 
             {points.map((p) => {
               const coordinate = CITY_COORDINATES[p.id];
@@ -281,6 +340,28 @@ export function CameroonMap({
           <span className="h-2.5 w-2.5 rounded-full border border-text-2 bg-bg" />
           {t("map.statusTarget")}
         </span>
+      </div>
+
+      <div className="mt-3 rounded-md border border-border bg-bg-2 p-3">
+        <div className="flex items-center justify-between gap-2 text-xs">
+          <span className="font-medium text-text">{t("map.regionsTitle")}</span>
+          <span className="text-text-2">
+            {t("map.regionsCoverage", { covered: coveredRegions, total: regions.length })}
+          </span>
+        </div>
+        <div className="mt-2 grid grid-cols-2 gap-2 text-[11px] text-text-2 sm:grid-cols-3">
+          {regions.map((region) => (
+            <span key={region.id} className="inline-flex items-center gap-1.5 rounded-md border border-border bg-surface-1 px-2 py-1">
+              <span
+                className={cx(
+                  "h-1.5 w-1.5 rounded-full",
+                  region.covered ? "bg-text" : "border border-text-2 bg-bg",
+                )}
+              />
+              {t(`map.region.${region.id}`)}
+            </span>
+          ))}
+        </div>
       </div>
 
       {hovered ? (

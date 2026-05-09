@@ -7,7 +7,7 @@ import { useTranslations } from "next-intl";
 export type GalleryPhoto = {
   src: string;
   alt: string;
-  caption: string;
+  caption?: string;
   eventSlug: string;
   eventName: string;
   startDateISO: string;

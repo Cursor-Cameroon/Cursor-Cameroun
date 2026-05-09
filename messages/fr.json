@@ -79,7 +79,33 @@
     "membersCount": "{count, plural, =0 {0 membre} one {# membre} other {# membres}}",
     "statusLabel": "Statut:",
     "statusCovered": "couvert",
-    "statusTarget": "cible"
+    "statusTarget": "cible",
+    "regionsTitle": "Régions du Cameroun (10)",
+    "regionsCoverage": "{covered}/{total} couvertes",
+    "region": {
+      "adamawa": "Adamaoua",
+      "centre": "Centre",
+      "east": "Est",
+      "farNorth": "Extrême-Nord",
+      "littoral": "Littoral",
+      "north": "Nord",
+      "northWest": "Nord-Ouest",
+      "west": "Ouest",
+      "south": "Sud",
+      "southWest": "Sud-Ouest"
+    },
+    "regionShort": {
+      "adamawa": "AD",
+      "centre": "CE",
+      "east": "ES",
+      "farNorth": "EN",
+      "littoral": "LT",
+      "north": "NO",
+      "northWest": "NW",
+      "west": "OU",
+      "south": "SU",
+      "southWest": "SW"
+    }
   },
   "roadmap": {
     "title": "Roadmap",

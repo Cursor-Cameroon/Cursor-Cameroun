@@ -79,7 +79,33 @@
     "membersCount": "{count, plural, =0 {0 member} one {# member} other {# members}}",
     "statusLabel": "Status:",
     "statusCovered": "covered",
-    "statusTarget": "target"
+    "statusTarget": "target",
+    "regionsTitle": "Cameroon regions (10)",
+    "regionsCoverage": "{covered}/{total} covered",
+    "region": {
+      "adamawa": "Adamawa",
+      "centre": "Centre",
+      "east": "East",
+      "farNorth": "Far North",
+      "littoral": "Littoral",
+      "north": "North",
+      "northWest": "North-West",
+      "west": "West",
+      "south": "South",
+      "southWest": "South-West"
+    },
+    "regionShort": {
+      "adamawa": "AD",
+      "centre": "CE",
+      "east": "EA",
+      "farNorth": "FN",
+      "littoral": "LI",
+      "north": "NO",
+      "northWest": "NW",
+      "west": "WE",
+      "south": "SO",
+      "southWest": "SW"
+    }
   },
   "roadmap": {
     "title": "Roadmap",
