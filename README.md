@@ -14,6 +14,16 @@ Site officiel de la communauté **Cursor Cameroun** (Mini Hackathon #1).
 **Noir / Blanc / Gris uniquement** (conforme au cahier des charges).  
 Tokens CSS dans `src/app/globals.css`.
 
+## Configuration et Variables d'Environnement
+
+Le projet utilise des variables d'environnement pour l'authentification et l'envoi d'emails. Avant de lancer le projet, vous devez configurer votre environnement :
+
+1. Copiez le fichier d'exemple :
+```bash
+cp .env.example .env
+```
+2. Ouvrez le fichier `.env` et complétez les valeurs (mot de passe admin, clé API Resend, etc.).
+
 ## Démarrer en local
 
 ```bash
