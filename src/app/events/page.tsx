@@ -1,8 +1,9 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getPastEvents, getUpcomingEvents } from "@/data/events";
 import { FadeIn, FadeInStagger } from "@/components/FadeIn";
 import Image from "next/image";
+import { MapPin } from "lucide-react";
 
 export default async function EventsPage({
   searchParams,
@@ -10,6 +11,7 @@ export default async function EventsPage({
   searchParams?: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const t = await getTranslations();
+  const locale = await getLocale();
   const sp = (await searchParams) ?? {};
   const tab = typeof sp.tab === "string" ? sp.tab : "upcoming";
 
@@ -56,8 +58,14 @@ export default async function EventsPage({
       </FadeIn>
 
       <FadeInStagger className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        {events.map((e) => (
-          <FadeIn key={e.slug}>
+        {events.map((e) => {
+          const dateObj = new Date(e.dateISO);
+          const monthShort = new Intl.DateTimeFormat(locale, { month: "short" }).format(dateObj).toUpperCase();
+          const day = dateObj.getDate().toString();
+          const fullDate = new Intl.DateTimeFormat(locale, { weekday: "long", day: "numeric", month: "long" }).format(dateObj);
+
+          return (
+            <FadeIn key={e.slug}>
             <article
               className="group overflow-hidden rounded-lg border border-border bg-surface-1 transition-all hover:border-text/20 hover:shadow-lg"
             >
@@ -82,11 +90,42 @@ export default async function EventsPage({
                     : t("events.statusPast")}
                 </span>
               </div>
-              <p className="mt-2 text-sm text-text-2">
-                {e.city} · {e.dateISO}
-                {e.venue ? ` · ${e.venue}` : ""}
-                {e.participants ? ` · ${e.participants} ${t("events.participants")}` : ""}
-              </p>
+              <div className="mt-4 flex flex-col gap-4">
+                {/* Date Row */}
+                <div className="flex items-start gap-3">
+                  <div className="flex flex-col items-center justify-center rounded-lg border border-border bg-surface-1 w-10 h-10 shrink-0 overflow-hidden">
+                    <div className="bg-surface-2 text-[8px] font-bold text-text-2 uppercase w-full text-center py-0.5 border-b border-border">
+                      {monthShort.replace(".", "")}
+                    </div>
+                    <div className="text-base font-bold text-text leading-none flex-1 flex items-center justify-center pt-0.5">
+                      {day}
+                    </div>
+                  </div>
+                  <div className="flex flex-col justify-center py-0.5">
+                    <span className="text-sm font-semibold text-text capitalize">{fullDate}</span>
+                    <span className="text-xs text-text-2">9:30 - 16:00</span>
+                  </div>
+                </div>
+
+                {/* Location Row */}
+                <div className="flex items-start gap-3">
+                  <div className="flex items-center justify-center rounded-lg border border-border bg-surface-1 w-10 h-10 shrink-0 text-text-2">
+                    <MapPin size={16} />
+                  </div>
+                  <div className="flex flex-col justify-center py-0.5">
+                    <span className="text-sm font-semibold text-text">
+                      {e.venue || "S'inscrire pour voir l'adresse"}
+                    </span>
+                    <span className="text-xs text-text-2">{e.city}</span>
+                  </div>
+                </div>
+              </div>
+              
+              {e.participants ? (
+                <p className="mt-4 text-xs font-medium text-text-2">
+                  {e.participants} {t("events.participants")}
+                </p>
+              ) : null}
               <p className="mt-4 text-sm leading-6 text-text">{e.shortDescription}</p>
 
               <div className="mt-5 flex flex-wrap gap-2">
@@ -110,7 +149,8 @@ export default async function EventsPage({
               </div>
             </article>
           </FadeIn>
-        ))}
+          );
+        })}
       </FadeInStagger>
     </div>
   );

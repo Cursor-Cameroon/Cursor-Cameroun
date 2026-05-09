@@ -1,8 +1,9 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getEvent } from "@/data/events";
+import { MapPin } from "lucide-react";
 
 export default async function EventDetailPage({
   params,
@@ -10,9 +11,15 @@ export default async function EventDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const t = await getTranslations();
+  const locale = await getLocale();
   const { slug } = await params;
   const event = getEvent(slug);
   if (!event) notFound();
+
+  const dateObj = new Date(event.dateISO);
+  const monthShort = new Intl.DateTimeFormat(locale, { month: "short" }).format(dateObj).toUpperCase();
+  const day = dateObj.getDate().toString();
+  const fullDate = new Intl.DateTimeFormat(locale, { weekday: "long", day: "numeric", month: "long" }).format(dateObj);
 
   return (
     <div className="flex flex-col gap-10">
@@ -29,16 +36,44 @@ export default async function EventDetailPage({
           </div>
         )}
         <div className="p-8">
-        <p className="text-sm text-text-2">
-          {event.city} · {event.dateISO}
-          {event.venue ? ` · ${event.venue}` : ""}
-        </p>
-        <h1 className="mt-3 text-3xl font-semibold tracking-tight text-text">
-          {event.name}
-        </h1>
-        <p className="mt-4 max-w-3xl text-sm leading-7 text-text">
-          {event.shortDescription}
-        </p>
+          <h1 className="text-3xl font-bold tracking-tight text-text mb-6">
+            {event.name}
+          </h1>
+
+          <div className="flex flex-col gap-6 mb-8">
+            {/* Date Row */}
+            <div className="flex items-start gap-4">
+              <div className="flex flex-col items-center justify-center rounded-lg border border-border bg-surface-1 w-12 h-12 shrink-0 overflow-hidden">
+                <div className="bg-surface-2 text-[10px] font-bold text-text-2 uppercase w-full text-center py-0.5 border-b border-border">
+                  {monthShort.replace(".", "")}
+                </div>
+                <div className="text-lg font-bold text-text leading-none flex-1 flex items-center justify-center pt-0.5">
+                  {day}
+                </div>
+              </div>
+              <div className="flex flex-col justify-center py-1">
+                <span className="text-base font-semibold text-text capitalize">{fullDate}</span>
+                <span className="text-sm text-text-2">9:30 - 16:00</span>
+              </div>
+            </div>
+
+            {/* Location Row */}
+            <div className="flex items-start gap-4">
+              <div className="flex items-center justify-center rounded-lg border border-border bg-surface-1 w-12 h-12 shrink-0 text-text-2">
+                <MapPin size={20} />
+              </div>
+              <div className="flex flex-col justify-center py-1">
+                <span className="text-base font-semibold text-text">
+                  {event.venue || "S'inscrire pour voir l'adresse"}
+                </span>
+                <span className="text-sm text-text-2">{event.city}</span>
+              </div>
+            </div>
+          </div>
+
+          <p className="max-w-3xl text-sm leading-7 text-text-2">
+            {event.shortDescription}
+          </p>
         {event.participants ? (
           <p className="mt-2 text-sm text-text-2">
             {event.participants} {t("events.participants")}
