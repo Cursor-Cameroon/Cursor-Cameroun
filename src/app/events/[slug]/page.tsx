@@ -70,7 +70,7 @@ export default async function EventDetailPage({
               </div>
               <div className="flex flex-col justify-center py-1">
                 <span className="text-base font-semibold text-text">
-                  {event.venue || "S'inscrire pour voir l'adresse"}
+                  {event.venue || t("events.addressOnRegistration")}
                 </span>
                 <span className="text-sm text-text-2">{event.city}</span>
               </div>

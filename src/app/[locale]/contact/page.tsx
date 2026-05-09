@@ -42,7 +42,7 @@ export default async function ContactPage() {
                   <Mail size={20} />
                 </div>
                 <div>
-                  <h3 className="font-medium text-text">Email</h3>
+                  <h3 className="font-medium text-text">{t("contact.channelEmail")}</h3>
                   <p className="text-sm text-text-2">hello@cursor-cameroun.org</p>
                 </div>
               </div>
@@ -56,8 +56,8 @@ export default async function ContactPage() {
                   <MessageSquare size={20} />
                 </div>
                 <div>
-                  <h3 className="font-medium text-text">WhatsApp</h3>
-                  <p className="text-sm text-text-2">Rejoignez notre communauté</p>
+                  <h3 className="font-medium text-text">{t("contact.channelWhatsapp")}</h3>
+                  <p className="text-sm text-text-2">{t("contact.whatsappHint")}</p>
                 </div>
               </div>
             </div>
@@ -70,8 +70,8 @@ export default async function ContactPage() {
                   <MapPin size={20} />
                 </div>
                 <div>
-                  <h3 className="font-medium text-text">Localisation</h3>
-                  <p className="text-sm text-text-2">Douala & Yaoundé, Cameroun</p>
+                  <h3 className="font-medium text-text">{t("contact.channelLocation")}</h3>
+                  <p className="text-sm text-text-2">{t("contact.locationHint")}</p>
                 </div>
               </div>
             </div>

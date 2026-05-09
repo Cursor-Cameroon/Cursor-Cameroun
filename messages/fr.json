@@ -59,7 +59,8 @@
     "detailProgram": "Programme",
     "detailProjects": "Projets construits",
     "detailLinks": "Liens",
-    "detailPhotos": "Photos"
+    "detailPhotos": "Photos",
+    "addressOnRegistration": "S’inscrire pour voir l’adresse"
   },
   "gallery": {
     "title": "Galerie",
@@ -107,7 +108,8 @@
     "joinBody": "Le canal principal de la communauté est WhatsApp. Rejoignez le groupe pour recevoir les annonces et participer.",
     "noProjects": "Aucun projet listé pour le moment.",
     "orgGithub": "Organisation GitHub",
-    "groupWhatsapp": "Groupe WhatsApp"
+    "groupWhatsapp": "Groupe WhatsApp",
+    "linkedin": "LinkedIn"
   },
   "contact": {
     "title": "Contact",
@@ -121,7 +123,13 @@
     "successTitle": "Message envoyé !",
     "successBody": "Merci de nous avoir contactés. Nous vous répondrons dès que possible.",
     "errorTitle": "Erreur",
-    "errorBody": "Une erreur est survenue lors de l'envoi. Veuillez réessayer."
+    "errorBody": "Une erreur est survenue lors de l'envoi. Veuillez réessayer.",
+    "channelEmail": "Email",
+    "channelWhatsapp": "WhatsApp",
+    "channelLocation": "Localisation",
+    "whatsappHint": "Rejoignez notre communauté",
+    "locationHint": "Douala & Yaoundé, Cameroun",
+    "sendAnother": "Envoyer un autre message"
   }
 }
 

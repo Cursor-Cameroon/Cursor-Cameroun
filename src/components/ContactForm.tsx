@@ -65,7 +65,7 @@ export function ContactForm() {
         animate={{ opacity: 1, scale: 1 }}
         className="flex flex-col items-center justify-center rounded-xl border border-border bg-surface-1 p-12 text-center"
       >
-        <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-500/10 text-green-500">
+        <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full border border-border bg-surface-2 text-text">
           <CheckCircle2 size={32} />
         </div>
         <h3 className="text-2xl font-semibold text-text">
@@ -76,7 +76,7 @@ export function ContactForm() {
           onClick={() => setIsSuccess(false)}
           className="mt-8 rounded-md bg-text px-6 py-2 text-sm font-medium text-bg hover:opacity-90"
         >
-          {t("contact.formSubmit")}
+          {t("contact.sendAnother")}
         </button>
       </motion.div>
     );
@@ -98,11 +98,11 @@ export function ContactForm() {
               {...register("name")}
               id="name"
               className={`rounded-md border bg-bg px-4 py-2 text-sm text-text focus:outline-none focus:ring-2 ${
-                errors.name ? "border-red-500 ring-red-500/20" : "border-border focus:ring-ring/20"
+                errors.name ? "border-text ring-text/20" : "border-border focus:ring-ring/20"
               }`}
             />
             {errors.name && (
-              <span className="text-xs text-red-500">{errors.name.message}</span>
+              <span className="text-xs text-text-2">{errors.name.message}</span>
             )}
           </div>
 
@@ -116,11 +116,11 @@ export function ContactForm() {
               id="email"
               type="email"
               className={`rounded-md border bg-bg px-4 py-2 text-sm text-text focus:outline-none focus:ring-2 ${
-                errors.email ? "border-red-500 ring-red-500/20" : "border-border focus:ring-ring/20"
+                errors.email ? "border-text ring-text/20" : "border-border focus:ring-ring/20"
               }`}
             />
             {errors.email && (
-              <span className="text-xs text-red-500">{errors.email.message}</span>
+              <span className="text-xs text-text-2">{errors.email.message}</span>
             )}
           </div>
         </div>
@@ -134,11 +134,11 @@ export function ContactForm() {
             {...register("subject")}
             id="subject"
             className={`rounded-md border bg-bg px-4 py-2 text-sm text-text focus:outline-none focus:ring-2 ${
-              errors.subject ? "border-red-500 ring-red-500/20" : "border-border focus:ring-ring/20"
+              errors.subject ? "border-text ring-text/20" : "border-border focus:ring-ring/20"
             }`}
           />
           {errors.subject && (
-            <span className="text-xs text-red-500">{errors.subject.message}</span>
+            <span className="text-xs text-text-2">{errors.subject.message}</span>
           )}
         </div>
 
@@ -152,11 +152,11 @@ export function ContactForm() {
             id="message"
             rows={5}
             className={`resize-none rounded-md border bg-bg px-4 py-2 text-sm text-text focus:outline-none focus:ring-2 ${
-              errors.message ? "border-red-500 ring-red-500/20" : "border-border focus:ring-ring/20"
+              errors.message ? "border-text ring-text/20" : "border-border focus:ring-ring/20"
             }`}
           />
           {errors.message && (
-            <span className="text-xs text-red-500">{errors.message.message}</span>
+            <span className="text-xs text-text-2">{errors.message.message}</span>
           )}
         </div>
 
@@ -166,7 +166,7 @@ export function ContactForm() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="flex items-center gap-2 text-sm text-red-500"
+              className="flex items-center gap-2 rounded-md border border-border bg-surface-2 px-3 py-2 text-sm text-text"
             >
               <AlertCircle size={16} />
               {error}

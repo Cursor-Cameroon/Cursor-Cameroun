@@ -13,6 +13,18 @@ function formatEventDateRange(startDateISO: string, endDateISO: string) {
   return startDateISO === endDateISO ? startDateISO : `${startDateISO} → ${endDateISO}`;
 }
 
+export async function generateMetadata() {
+  const t = await getTranslations();
+  return {
+    title: t("roadmap.title"),
+    description: t("roadmap.subtitle"),
+    openGraph: {
+      title: t("roadmap.title"),
+      description: t("roadmap.subtitle"),
+    },
+  };
+}
+
 export default async function RoadmapPage({
   searchParams,
 }: {

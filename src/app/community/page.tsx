@@ -3,6 +3,18 @@ import { LINKS } from "@/data/links";
 import { getEvents } from "@/data/events";
 import { FadeIn, FadeInStagger } from "@/components/FadeIn";
 
+export async function generateMetadata() {
+  const t = await getTranslations();
+  return {
+    title: t("community.title"),
+    description: t("community.subtitle"),
+    openGraph: {
+      title: t("community.title"),
+      description: t("community.subtitle"),
+    },
+  };
+}
+
 export default async function CommunityPage() {
   const t = await getTranslations();
   const events = getEvents();
@@ -55,7 +67,7 @@ export default async function CommunityPage() {
                 target="_blank"
                 rel="noreferrer"
               >
-                WhatsApp
+                {t("community.groupWhatsapp")}
               </a>
               <a
                 className="inline-flex items-center justify-center rounded-md border border-border bg-surface-1 px-4 py-2 text-sm font-medium text-text hover:bg-surface-2"
@@ -63,7 +75,7 @@ export default async function CommunityPage() {
                 target="_blank"
                 rel="noreferrer"
               >
-                LinkedIn
+                {t("community.linkedin")}
               </a>
             </div>
           </div>
@@ -104,7 +116,7 @@ export default async function CommunityPage() {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  LinkedIn
+                  {t("community.linkedin")}
                 </a>
                 <div className="mt-1 text-xs text-text-2">{LINKS.linkedin}</div>
               </li>

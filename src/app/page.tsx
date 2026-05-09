@@ -11,6 +11,18 @@ function formatEventDateRange(startDateISO: string, endDateISO: string) {
   return startDateISO === endDateISO ? startDateISO : `${startDateISO} → ${endDateISO}`;
 }
 
+export async function generateMetadata() {
+  const t = await getTranslations();
+  return {
+    title: t("nav.home"),
+    description: t("meta.description"),
+    openGraph: {
+      title: t("meta.siteName"),
+      description: t("meta.description"),
+    },
+  };
+}
+
 export default async function Home() {
   const t = await getTranslations();
   const upcoming = getUpcomingEvents().slice(0, 3);

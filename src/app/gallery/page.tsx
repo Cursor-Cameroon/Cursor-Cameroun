@@ -11,6 +11,18 @@ function galleryHref(event: string, date: string) {
   return `/gallery${qs ? `?${qs}` : ""}`;
 }
 
+export async function generateMetadata() {
+  const t = await getTranslations();
+  return {
+    title: t("gallery.title"),
+    description: t("gallery.subtitle"),
+    openGraph: {
+      title: t("gallery.title"),
+      description: t("gallery.subtitle"),
+    },
+  };
+}
+
 export default async function GalleryPage({
   searchParams,
 }: {

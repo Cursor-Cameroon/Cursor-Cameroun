@@ -181,7 +181,7 @@ export function Navbar() {
           {isAdmin && (
             <button
               onClick={handleLogout}
-              className="hidden items-center justify-center rounded-md border border-border bg-surface-1 p-2 text-text-2 hover:text-red-500 hover:bg-surface-2 md:inline-flex"
+              className="hidden items-center justify-center rounded-md border border-border bg-surface-1 p-2 text-text-2 hover:text-text hover:bg-surface-2 md:inline-flex"
               title="Déconnexion"
             >
               <LogOut size={18} />
@@ -249,7 +249,7 @@ export function Navbar() {
             {isAdmin && (
               <button
                 onClick={handleLogout}
-                className="rounded-md border border-border bg-surface-1 px-3 py-2 text-sm text-text-2 hover:text-red-500 hover:bg-surface-2"
+                className="rounded-md border border-border bg-surface-1 px-3 py-2 text-sm text-text-2 hover:text-text hover:bg-surface-2"
               >
                 Déconnexion
               </button>

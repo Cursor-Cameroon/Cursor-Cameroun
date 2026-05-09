@@ -59,7 +59,8 @@
     "detailProgram": "Agenda",
     "detailProjects": "Built projects",
     "detailLinks": "Links",
-    "detailPhotos": "Photos"
+    "detailPhotos": "Photos",
+    "addressOnRegistration": "Register to view address"
   },
   "gallery": {
     "title": "Gallery",
@@ -107,7 +108,8 @@
     "joinBody": "The main community channel is WhatsApp. Join the group for announcements and participation.",
     "noProjects": "No projects listed yet.",
     "orgGithub": "GitHub organization",
-    "groupWhatsapp": "WhatsApp group"
+    "groupWhatsapp": "WhatsApp group",
+    "linkedin": "LinkedIn"
   },
   "contact": {
     "title": "Contact",
@@ -121,7 +123,13 @@
     "successTitle": "Message sent!",
     "successBody": "Thank you for reaching out. We will get back to you as soon as possible.",
     "errorTitle": "Error",
-    "errorBody": "An error occurred while sending. Please try again."
+    "errorBody": "An error occurred while sending. Please try again.",
+    "channelEmail": "Email",
+    "channelWhatsapp": "WhatsApp",
+    "channelLocation": "Location",
+    "whatsappHint": "Join our community",
+    "locationHint": "Douala & Yaounde, Cameroon",
+    "sendAnother": "Send another message"
   }
 }
 

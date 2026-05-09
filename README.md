@@ -7,7 +7,7 @@ Site officiel de la communauté **Cursor Cameroun** (Mini Hackathon #1).
 - Next.js (App Router) + TypeScript
 - Tailwind CSS
 - `next-intl` (FR/EN)
-- `next-themes` (sombre par défaut + clair)
+- Theme provider custom (sombre par défaut + clair)
 
 ## Charte graphique (obligatoire)
 
@@ -36,8 +36,10 @@ Puis ouvrir `http://localhost:3000`.
 
 ## Données et Assets
 - [x] Liens officiels (WhatsApp / GitHub org / LinkedIn) intégrés dans `src/data/links.ts`
-- [x] Événements et pages détails complétés dans `src/data/events.ts`
-- [x] Photos professionnelles (N&B) ajoutées dans `public/gallery/`
+- [x] Événements et pages détails complétés dans `src/data/events.ts` et `src/data/events.json`
+- [x] États d'événements supportés : `upcoming`, `ongoing`, `past`
+- [x] Dates d'événements : `startDateISO` + `endDateISO` (compatibilité `dateISO` conservée)
+- [x] Galerie avec filtre événement/date + lightbox + lazy-loading
 - [x] Logos officiels Cursor ajoutés dans `public/brand/`
 
 ## Livrables hackathon
@@ -45,6 +47,17 @@ Puis ouvrir `http://localhost:3000`.
 - `.cursorrules` : règles projet Cursor
 - `AGENT.md` : usage de Cursor pendant le hackathon
 - SEO : `src/app/sitemap.ts` + `src/app/robots.ts`
+
+## État de conformité CDC (v2.0)
+
+- [x] Pages obligatoires : Home, Events, Gallery, Roadmap, Community
+- [x] Navigation responsive avec CTA rejoindre, langue, thème
+- [x] i18n FR/EN via `next-intl` (messages centralisés)
+- [x] Thème sombre par défaut, thème clair disponible
+- [x] Sitemap + robots
+- [x] Metadata de page ajoutées sur les pages principales
+- [~] Performance images : lazy-loading en place, migration WebP/AVIF à finaliser sur certaines sources
+- [~] Carte Cameroun interactive présente; enrichissement "10 régions" restant possible
 
 ## Galerie & Aperçus de Travail
 
@@ -58,3 +71,10 @@ Voici quelques captures d'écran illustrant notre travail collaboratif avec Curs
 
 ### Session de Travail
 ![Session de Travail](public/gallery/WORK.png)
+
+## Commandes utiles
+
+```bash
+npm run dev
+npm run lint
+```

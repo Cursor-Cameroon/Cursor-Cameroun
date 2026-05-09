@@ -5,6 +5,18 @@ import { FadeIn, FadeInStagger } from "@/components/FadeIn";
 import Image from "next/image";
 import { MapPin } from "lucide-react";
 
+export async function generateMetadata() {
+  const t = await getTranslations();
+  return {
+    title: t("events.title"),
+    description: t("events.intro"),
+    openGraph: {
+      title: t("events.title"),
+      description: t("events.intro"),
+    },
+  };
+}
+
 export default async function EventsPage({
   searchParams,
 }: {
@@ -132,7 +144,7 @@ export default async function EventsPage({
                   </div>
                   <div className="flex flex-col justify-center py-0.5">
                     <span className="text-sm font-semibold text-text">
-                      {e.venue || "S'inscrire pour voir l'adresse"}
+                      {e.venue || t("events.addressOnRegistration")}
                     </span>
                     <span className="text-xs text-text-2">{e.city}</span>
                   </div>

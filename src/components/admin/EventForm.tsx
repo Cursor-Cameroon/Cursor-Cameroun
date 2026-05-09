@@ -112,7 +112,7 @@ export function EventForm({ initialData, onSubmit, onCancel, isSubmitting }: Eve
             placeholder="cafe-cursor-yaounde-02"
             className="rounded-md border border-border bg-surface-1 px-3 py-2 text-sm text-text focus:outline-none focus:ring-1 focus:ring-ring"
           />
-          {errors.slug && <span className="text-[10px] text-red-500">{errors.slug.message as string}</span>}
+          {errors.slug && <span className="text-[10px] text-text-2">{errors.slug.message as string}</span>}
         </div>
 
         <div className="flex flex-col gap-1">
@@ -122,7 +122,7 @@ export function EventForm({ initialData, onSubmit, onCancel, isSubmitting }: Eve
             placeholder="Nom de l'événement"
             className="rounded-md border border-border bg-surface-1 px-3 py-2 text-sm text-text focus:outline-none focus:ring-1 focus:ring-ring"
           />
-          {errors.name && <span className="text-[10px] text-red-500">{errors.name.message as string}</span>}
+          {errors.name && <span className="text-[10px] text-text-2">{errors.name.message as string}</span>}
         </div>
 
         <div className="flex flex-col gap-1">
@@ -132,7 +132,7 @@ export function EventForm({ initialData, onSubmit, onCancel, isSubmitting }: Eve
             placeholder="2026-05-15"
             className="rounded-md border border-border bg-surface-1 px-3 py-2 text-sm text-text focus:outline-none focus:ring-1 focus:ring-ring"
           />
-          {errors.startDateISO && <span className="text-[10px] text-red-500">{errors.startDateISO.message as string}</span>}
+          {errors.startDateISO && <span className="text-[10px] text-text-2">{errors.startDateISO.message as string}</span>}
         </div>
 
         <div className="flex flex-col gap-1">
@@ -142,7 +142,7 @@ export function EventForm({ initialData, onSubmit, onCancel, isSubmitting }: Eve
             placeholder="2026-05-16"
             className="rounded-md border border-border bg-surface-1 px-3 py-2 text-sm text-text focus:outline-none focus:ring-1 focus:ring-ring"
           />
-          {errors.endDateISO && <span className="text-[10px] text-red-500">{errors.endDateISO.message as string}</span>}
+          {errors.endDateISO && <span className="text-[10px] text-text-2">{errors.endDateISO.message as string}</span>}
         </div>
 
         <div className="flex flex-col gap-1">
@@ -152,7 +152,7 @@ export function EventForm({ initialData, onSubmit, onCancel, isSubmitting }: Eve
             placeholder="Yaoundé"
             className="rounded-md border border-border bg-surface-1 px-3 py-2 text-sm text-text focus:outline-none focus:ring-1 focus:ring-ring"
           />
-          {errors.city && <span className="text-[10px] text-red-500">{errors.city.message as string}</span>}
+          {errors.city && <span className="text-[10px] text-text-2">{errors.city.message as string}</span>}
         </div>
 
         <div className="flex flex-col gap-1">
@@ -192,7 +192,7 @@ export function EventForm({ initialData, onSubmit, onCancel, isSubmitting }: Eve
             placeholder="https://lu.ma/..."
             className="rounded-md border border-border bg-surface-1 px-3 py-2 text-sm text-text focus:outline-none focus:ring-1 focus:ring-ring"
           />
-          {errors.lumaUrl && <span className="text-[10px] text-red-500">{errors.lumaUrl.message as string}</span>}
+          {errors.lumaUrl && <span className="text-[10px] text-text-2">{errors.lumaUrl.message as string}</span>}
         </div>
 
         <div className="flex flex-col gap-1">
@@ -231,7 +231,7 @@ export function EventForm({ initialData, onSubmit, onCancel, isSubmitting }: Eve
           rows={2}
           className="rounded-md border border-border bg-surface-1 px-3 py-2 text-sm text-text focus:outline-none focus:ring-1 focus:ring-ring"
         />
-        {errors.shortDescription && <span className="text-[10px] text-red-500">{errors.shortDescription.message as string}</span>}
+        {errors.shortDescription && <span className="text-[10px] text-text-2">{errors.shortDescription.message as string}</span>}
       </div>
 
       {/* Gallery Section */}
@@ -254,7 +254,7 @@ export function EventForm({ initialData, onSubmit, onCancel, isSubmitting }: Eve
               <button
                 type="button"
                 onClick={() => remove(index)}
-                className="absolute top-2 right-2 p-1 rounded-md bg-surface-1 text-text-2 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
+                className="absolute top-2 right-2 p-1 rounded-md bg-surface-1 text-text-2 hover:text-text opacity-0 group-hover:opacity-100 transition-opacity"
               >
                 <Trash2 size={14} />
               </button>

@@ -162,7 +162,7 @@ export default function AdminEventsPage() {
                       </button>
                       <button
                         onClick={() => handleDelete(event.slug)}
-                        className="p-1.5 rounded-md hover:bg-red-100 dark:hover:bg-red-900/30 text-text-2 hover:text-red-500 transition-colors"
+                        className="p-1.5 rounded-md hover:bg-surface-2 text-text-2 hover:text-text transition-colors"
                         title="Supprimer"
                       >
                         <Trash2 size={16} />
