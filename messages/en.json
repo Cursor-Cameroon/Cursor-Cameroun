@@ -5,7 +5,14 @@
     "description": "Events, nationwide roadmap, open-source projects, and how to join Cursor Cameroon."
   },
   "footer": {
-    "line": "Black · White · Gray — Cursor brand"
+    "description": "The official Cursor community in Cameroon. We bring together AI-assisted development enthusiasts to build the future of African tech.",
+    "community": "Community",
+    "contact": "Contact",
+    "location": "Cameroon · Yaounde & Douala",
+    "writeUs": "Write to us",
+    "rights": "All rights reserved.",
+    "line": "Black · White · Gray — Official Brand Guidelines",
+    "admin": "Admin"
   },
   "nav": {
     "home": "Home",

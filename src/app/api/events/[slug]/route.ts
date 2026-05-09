@@ -19,7 +19,8 @@ export async function PUT(
     saveEvents(events);
     return NextResponse.json(events[index]);
   } catch (error) {
-    return NextResponse.json({ error: "Invalid data" }, { status: 400 });
+    console.error("Error updating event:", error);
+    return NextResponse.json({ error: "Invalid data", details: error instanceof Error ? error.message : String(error) }, { status: 400 });
   }
 }
 

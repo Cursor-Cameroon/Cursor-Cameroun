@@ -5,7 +5,14 @@
     "description": "Événements, roadmap territoriale, projets open source et infos pour rejoindre Cursor Cameroun."
   },
   "footer": {
-    "line": "Noir · Blanc · Gris — Charte Cursor"
+    "description": "La communauté officielle Cursor au Cameroun. Nous rassemblons les passionnés de développement assisté par l'IA pour bâtir le futur de la tech africaine.",
+    "community": "Communauté",
+    "contact": "Contact",
+    "location": "Cameroun · Yaoundé & Douala",
+    "writeUs": "Nous écrire",
+    "rights": "Tous droits réservés.",
+    "line": "Noir · Blanc · Gris — Charte Graphique Officielle",
+    "admin": "Admin"
   },
   "nav": {
     "home": "Accueil",

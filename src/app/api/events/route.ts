@@ -53,6 +53,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json(newEvent, { status: 201 });
   } catch (error) {
-    return NextResponse.json({ error: "Invalid data" }, { status: 400 });
+    console.error("Error creating event:", error);
+    return NextResponse.json({ error: "Invalid data", details: error instanceof Error ? error.message : String(error) }, { status: 400 });
   }
 }

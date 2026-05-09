@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -13,7 +14,7 @@ const eventSchema = z.object({
   city: z.string().min(2, "City is required"),
   venue: z.string().optional(),
   shortDescription: z.string().min(10, "Description must be at least 10 characters"),
-  participants: z.number().optional(),
+  participants: z.preprocess((val) => (val === "" || Number.isNaN(Number(val)) ? undefined : Number(val)), z.number().optional()),
   status: z.enum(["upcoming", "past", "ongoing"]),
   lumaUrl: z.string().url().optional().or(z.literal("")),
   gallery: z.array(z.object({
@@ -36,6 +37,7 @@ export function EventForm({ initialData, onSubmit, onCancel, isSubmitting }: Eve
     register,
     handleSubmit,
     control,
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(eventSchema),
@@ -50,6 +52,38 @@ export function EventForm({ initialData, onSubmit, onCancel, isSubmitting }: Eve
     control,
     name: "gallery",
   });
+
+  const [uploading, setUploading] = useState(false);
+
+  const uploadToCloudinary = async (file: File) => {
+    const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+    const uploadPreset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
+    
+    if (!cloudName || !uploadPreset) {
+      alert("La configuration Cloudinary est manquante (.env)");
+      return null;
+    }
+
+    setUploading(true);
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", uploadPreset);
+
+    try {
+      const res = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+        method: "POST",
+        body: formData,
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error?.message || "Erreur d'upload");
+      return data.secure_url;
+    } catch (err: any) {
+      alert(err.message);
+      return null;
+    } finally {
+      setUploading(false);
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
@@ -136,11 +170,30 @@ export function EventForm({ initialData, onSubmit, onCancel, isSubmitting }: Eve
 
         <div className="flex flex-col gap-1">
           <label className="text-xs font-medium text-text-2">Image de Couverture (URL)</label>
-          <input
-            {...register("coverImage")}
-            placeholder="https://images.unsplash.com/..."
-            className="rounded-md border border-border bg-surface-1 px-3 py-2 text-sm text-text focus:outline-none focus:ring-1 focus:ring-ring"
-          />
+          <div className="flex gap-2">
+            <input
+              {...register("coverImage")}
+              placeholder="https://images.unsplash.com/..."
+              className="flex-1 rounded-md border border-border bg-surface-1 px-3 py-2 text-sm text-text focus:outline-none focus:ring-1 focus:ring-ring"
+            />
+            <label className="cursor-pointer rounded-md border border-border bg-surface-1 px-3 py-2 text-sm font-medium text-text hover:bg-surface-2 disabled:opacity-50 flex items-center justify-center">
+              {uploading ? "..." : "Upload"}
+              <input 
+                type="file" 
+                accept="image/*" 
+                className="hidden" 
+                onChange={async (e) => {
+                  const file = e.target.files?.[0];
+                  if (file) {
+                    const url = await uploadToCloudinary(file);
+                    if (url) {
+                      setValue("coverImage", url);
+                    }
+                  }
+                }}
+              />
+            </label>
+          </div>
         </div>
       </div>
 
@@ -180,12 +233,31 @@ export function EventForm({ initialData, onSubmit, onCancel, isSubmitting }: Eve
               </button>
               <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
                 <div className="flex flex-col gap-1">
-                  <label className="text-[10px] font-medium text-text-2 uppercase">Source (URL Externe ou Chemin /gallery/...)</label>
-                  <input
-                    {...register(`gallery.${index}.src`)}
-                    placeholder="https://... ou /gallery/photo.png"
-                    className="rounded-md border border-border bg-surface-1 px-2 py-1.5 text-xs text-text focus:outline-none"
-                  />
+                  <label className="text-[10px] font-medium text-text-2 uppercase">Source (URL ou Chemin)</label>
+                  <div className="flex gap-1">
+                    <input
+                      {...register(`gallery.${index}.src`)}
+                      placeholder="https://..."
+                      className="flex-1 min-w-0 rounded-md border border-border bg-surface-1 px-2 py-1.5 text-xs text-text focus:outline-none"
+                    />
+                    <label className="cursor-pointer rounded-md border border-border bg-surface-1 px-2 py-1.5 text-xs font-medium text-text hover:bg-surface-2 disabled:opacity-50 flex items-center justify-center">
+                      ↑
+                      <input 
+                        type="file" 
+                        accept="image/*" 
+                        className="hidden" 
+                        onChange={async (e) => {
+                          const file = e.target.files?.[0];
+                          if (file) {
+                            const url = await uploadToCloudinary(file);
+                            if (url) {
+                              setValue(`gallery.${index}.src`, url);
+                            }
+                          }
+                        }}
+                      />
+                    </label>
+                  </div>
                 </div>
                 <div className="flex flex-col gap-1">
                   <label className="text-[10px] font-medium text-text-2 uppercase">Alt Text</label>

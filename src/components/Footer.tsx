@@ -31,7 +31,7 @@ export function Footer() {
               />
             </Link>
             <p className="max-w-md text-sm leading-relaxed text-text-2">
-              La communauté officielle Cursor au Cameroun. Nous rassemblons les passionnés de développement assisté par l'IA pour bâtir le futur de la tech africaine.
+              {t("footer.description")}
             </p>
             <div className="flex items-center gap-4">
               <a href={LINKS.githubOrg} target="_blank" rel="noreferrer" className="p-2 rounded-full bg-surface-2 text-text-2 hover:text-text hover:bg-border transition-all">
@@ -46,7 +46,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div className="flex flex-col gap-6">
-            <h3 className="text-sm font-bold uppercase tracking-widest text-text">Communauté</h3>
+            <h3 className="text-sm font-bold uppercase tracking-widest text-text">{t("footer.community")}</h3>
             <nav className="flex flex-col gap-3">
               <Link href="/events" className="text-sm text-text-2 hover:text-text transition-colors">Événements</Link>
               <Link href="/gallery" className="text-sm text-text-2 hover:text-text transition-colors">Galerie</Link>
@@ -57,15 +57,15 @@ export function Footer() {
 
           {/* Contact & Info */}
           <div className="flex flex-col gap-6">
-            <h3 className="text-sm font-bold uppercase tracking-widest text-text">Contact</h3>
+            <h3 className="text-sm font-bold uppercase tracking-widest text-text">{t("footer.contact")}</h3>
             <div className="flex flex-col gap-4">
               <div className="flex items-start gap-3 text-sm text-text-2">
                 <MapPin size={18} className="shrink-0 text-text" />
-                <span>Cameroun · Yaoundé & Douala</span>
+                <span>{t("footer.location")}</span>
               </div>
               <div className="flex items-center gap-3 text-sm text-text-2">
                 <Mail size={18} className="shrink-0 text-text" />
-                <Link href="/contact" className="hover:text-text">Nous écrire</Link>
+                <Link href="/contact" className="hover:text-text">{t("footer.writeUs")}</Link>
               </div>
               <div className="flex items-center gap-3 text-sm text-text-2">
                 <Globe size={18} className="shrink-0 text-text" />
@@ -78,11 +78,11 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="mt-16 flex flex-col items-center justify-between gap-6 border-t border-border pt-8 text-xs text-text-2 md:flex-row">
           <div className="flex items-center gap-2">
-            <span>© {year} Cursor Cameroun. Tous droits réservés.</span>
+            <span>© {year} Cursor Cameroun. {t("footer.rights")}</span>
           </div>
           <div className="flex items-center gap-6">
-            <span>Noir · Blanc · Gris — Charte Graphique Official</span>
-            <Link href="/login" className="opacity-50 hover:opacity-100 transition-opacity">Admin</Link>
+            <span>{t("footer.line")}</span>
+            <Link href="/login" className="opacity-50 hover:opacity-100 transition-opacity">{t("footer.admin")}</Link>
           </div>
         </div>
       </div>
