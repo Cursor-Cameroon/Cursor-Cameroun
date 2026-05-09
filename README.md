@@ -51,10 +51,10 @@ Puis ouvrir `http://localhost:3000`.
 Voici quelques captures d'écran illustrant notre travail collaboratif avec Cursor :
 
 ### Édition du AGENT.md
-![Agent MD](cursor-cameroun/public/gallery/AGENT.png)
+![Agent MD](public/gallery/AGENT.png)
 
 ### Mise à jour du README
-![README](/gallery/README.png)
+![README](public/gallery/README.png)
 
 ### Session de Travail
-![Session de Travail](/gallery/WORK.png)
+![Session de Travail](public/gallery/WORK.png)
