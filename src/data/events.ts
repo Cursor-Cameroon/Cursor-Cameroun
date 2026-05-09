@@ -11,7 +11,9 @@ export type EventLink = {
 export type Event = {
   slug: string;
   name: string;
-  dateISO: string; // YYYY-MM-DD
+  dateISO: string; // kept for backward compatibility
+  startDateISO: string; // YYYY-MM-DD
+  endDateISO: string; // YYYY-MM-DD
   city: string;
   venue?: string;
   shortDescription: string;
@@ -27,10 +29,24 @@ export type Event = {
 
 const DATA_PATH = path.join(process.cwd(), "src/data/events.json");
 
+function normalizeEvent(event: Partial<Event>): Event {
+  const fallbackDate = event.dateISO ?? "";
+  const startDateISO = event.startDateISO ?? fallbackDate;
+  const endDateISO = event.endDateISO ?? startDateISO;
+
+  return {
+    ...(event as Event),
+    dateISO: startDateISO,
+    startDateISO,
+    endDateISO,
+  };
+}
+
 export function getEvents(): Event[] {
   try {
     const data = fs.readFileSync(DATA_PATH, "utf-8");
-    return JSON.parse(data);
+    const parsed = JSON.parse(data) as Partial<Event>[];
+    return parsed.map(normalizeEvent);
   } catch (error) {
     console.error("Error reading events.json:", error);
     return [];
@@ -47,17 +63,18 @@ export function getEvent(slug: string) {
 
 export function getUpcomingEvents() {
   return getEvents()
-    .filter((e) => e.status === "upcoming" || e.status === "ongoing")
-    .sort((a, b) => {
-      // "ongoing" first, then sort by date
-      if (a.status === "ongoing" && b.status !== "ongoing") return -1;
-      if (a.status !== "ongoing" && b.status === "ongoing") return 1;
-      return a.dateISO.localeCompare(b.dateISO);
-    });
+    .filter((e) => e.status === "upcoming")
+    .sort((a, b) => a.startDateISO.localeCompare(b.startDateISO));
+}
+
+export function getOngoingEvents() {
+  return getEvents()
+    .filter((e) => e.status === "ongoing")
+    .sort((a, b) => a.startDateISO.localeCompare(b.startDateISO));
 }
 
 export function getPastEvents() {
   return getEvents()
     .filter((e) => e.status === "past")
-    .sort((a, b) => b.dateISO.localeCompare(a.dateISO));
+    .sort((a, b) => b.endDateISO.localeCompare(a.endDateISO));
 }

@@ -16,10 +16,16 @@ export default async function EventDetailPage({
   const event = getEvent(slug);
   if (!event) notFound();
 
-  const dateObj = new Date(event.dateISO);
-  const monthShort = new Intl.DateTimeFormat(locale, { month: "short" }).format(dateObj).toUpperCase();
-  const day = dateObj.getDate().toString();
-  const fullDate = new Intl.DateTimeFormat(locale, { weekday: "long", day: "numeric", month: "long" }).format(dateObj);
+  const startDate = new Date(event.startDateISO);
+  const endDate = new Date(event.endDateISO);
+  const monthShort = new Intl.DateTimeFormat(locale, { month: "short" }).format(startDate).toUpperCase();
+  const day = startDate.getDate().toString();
+  const startFullDate = new Intl.DateTimeFormat(locale, { weekday: "long", day: "numeric", month: "long" }).format(startDate);
+  const endFullDate = new Intl.DateTimeFormat(locale, { weekday: "long", day: "numeric", month: "long" }).format(endDate);
+  const fullDate =
+    event.startDateISO === event.endDateISO
+      ? startFullDate
+      : `${startFullDate} → ${endFullDate}`;
 
   return (
     <div className="flex flex-col gap-10">

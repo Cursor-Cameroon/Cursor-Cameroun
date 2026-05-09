@@ -1,6 +1,6 @@
 import { getTranslations, getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { getPastEvents, getUpcomingEvents } from "@/data/events";
+import { getOngoingEvents, getPastEvents, getUpcomingEvents } from "@/data/events";
 import { FadeIn, FadeInStagger } from "@/components/FadeIn";
 import Image from "next/image";
 import { MapPin } from "lucide-react";
@@ -16,8 +16,9 @@ export default async function EventsPage({
   const tab = typeof sp.tab === "string" ? sp.tab : "upcoming";
 
   const upcoming = getUpcomingEvents();
+  const ongoing = getOngoingEvents();
   const past = getPastEvents();
-  const events = tab === "past" ? past : upcoming;
+  const events = tab === "past" ? past : tab === "ongoing" ? ongoing : upcoming;
 
   return (
     <div className="flex flex-col gap-8">
@@ -44,6 +45,17 @@ export default async function EventsPage({
             {t("events.upcoming")}
           </Link>
           <Link
+            href={{ pathname: "/events", query: { tab: "ongoing" } }}
+            className={[
+              "rounded-md border px-3 py-2 text-sm font-medium transition-colors",
+              tab === "ongoing"
+                ? "border-border bg-surface-2 text-text"
+                : "border-border bg-surface-1 text-text-2 hover:bg-surface-2 hover:text-text",
+            ].join(" ")}
+          >
+            {t("events.statusOngoing")}
+          </Link>
+          <Link
             href={{ pathname: "/events", query: { tab: "past" } }}
             className={[
               "rounded-md border px-3 py-2 text-sm font-medium transition-colors",
@@ -59,10 +71,16 @@ export default async function EventsPage({
 
       <FadeInStagger className="grid grid-cols-1 gap-4 md:grid-cols-2">
         {events.map((e) => {
-          const dateObj = new Date(e.dateISO);
-          const monthShort = new Intl.DateTimeFormat(locale, { month: "short" }).format(dateObj).toUpperCase();
-          const day = dateObj.getDate().toString();
-          const fullDate = new Intl.DateTimeFormat(locale, { weekday: "long", day: "numeric", month: "long" }).format(dateObj);
+          const startDate = new Date(e.startDateISO);
+          const endDate = new Date(e.endDateISO);
+          const monthShort = new Intl.DateTimeFormat(locale, { month: "short" }).format(startDate).toUpperCase();
+          const day = startDate.getDate().toString();
+          const startFullDate = new Intl.DateTimeFormat(locale, { weekday: "long", day: "numeric", month: "long" }).format(startDate);
+          const endFullDate = new Intl.DateTimeFormat(locale, { weekday: "long", day: "numeric", month: "long" }).format(endDate);
+          const fullDate =
+            e.startDateISO === e.endDateISO
+              ? startFullDate
+              : `${startFullDate} → ${endFullDate}`;
 
           return (
             <FadeIn key={e.slug}>

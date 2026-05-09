@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { type Event } from "@/data/events";
 import { EventForm } from "@/components/admin/EventForm";
 import { FadeIn } from "@/components/FadeIn";
-import { Plus, Pencil, Trash2, ExternalLink } from "lucide-react";
+import { Plus, Pencil, Trash2 } from "lucide-react";
 
 export default function AdminEventsPage() {
   const [events, setEvents] = useState<Event[]>([]);
@@ -30,7 +30,7 @@ export default function AdminEventsPage() {
     }
   }
 
-  async function handleSubmit(data: any) {
+  async function handleSubmit(data: Event) {
     setIsSubmitting(true);
     try {
       const url = editingEvent ? `/api/events/${editingEvent.slug}` : "/api/events";
@@ -130,7 +130,11 @@ export default function AdminEventsPage() {
                   <td className="px-6 py-4">
                     <div className="flex flex-col">
                       <span className="text-text">{event.city}</span>
-                      <span className="text-xs text-text-2">{event.dateISO}</span>
+                      <span className="text-xs text-text-2">
+                        {event.startDateISO === event.endDateISO
+                          ? event.startDateISO
+                          : `${event.startDateISO} → ${event.endDateISO}`}
+                      </span>
                     </div>
                   </td>
                   <td className="px-6 py-4">

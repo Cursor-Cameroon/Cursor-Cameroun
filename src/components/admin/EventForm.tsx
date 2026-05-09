@@ -4,13 +4,14 @@ import { useState } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { type Event, type EventStatus } from "@/data/events";
-import { X, Plus, Trash2 } from "lucide-react";
+import { type Event } from "@/data/events";
+import { Plus, Trash2 } from "lucide-react";
 
 const eventSchema = z.object({
   slug: z.string().min(3, "Slug must be at least 3 characters"),
   name: z.string().min(3, "Name must be at least 3 characters"),
-  dateISO: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Format must be YYYY-MM-DD"),
+  startDateISO: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Format must be YYYY-MM-DD"),
+  endDateISO: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Format must be YYYY-MM-DD"),
   city: z.string().min(2, "City is required"),
   venue: z.string().optional(),
   shortDescription: z.string().min(10, "Description must be at least 10 characters"),
@@ -23,11 +24,16 @@ const eventSchema = z.object({
     caption: z.string().optional(),
   })).optional(),
   coverImage: z.string().optional(),
+}).refine((data) => data.endDateISO >= data.startDateISO, {
+  message: "La date de fin doit être postérieure ou égale à la date de début",
+  path: ["endDateISO"],
 });
+
+type EventFormValues = z.infer<typeof eventSchema>;
 
 type EventFormProps = {
   initialData?: Event;
-  onSubmit: (data: any) => Promise<void>;
+  onSubmit: (data: Event) => Promise<void>;
   onCancel: () => void;
   isSubmitting: boolean;
 };
@@ -39,13 +45,21 @@ export function EventForm({ initialData, onSubmit, onCancel, isSubmitting }: Eve
     control,
     setValue,
     formState: { errors },
-  } = useForm({
+  } = useForm<EventFormValues>({
     resolver: zodResolver(eventSchema),
-    defaultValues: initialData || {
-      status: "upcoming",
-      participants: 0,
-      gallery: [],
-    },
+    defaultValues: initialData
+      ? {
+          ...initialData,
+          startDateISO: initialData.startDateISO || initialData.dateISO || "",
+          endDateISO: initialData.endDateISO || initialData.dateISO || "",
+        }
+      : {
+          status: "upcoming",
+          participants: 0,
+          gallery: [],
+          startDateISO: "",
+          endDateISO: "",
+        },
   });
 
   const { fields, append, remove } = useFieldArray({
@@ -77,8 +91,8 @@ export function EventForm({ initialData, onSubmit, onCancel, isSubmitting }: Eve
       const data = await res.json();
       if (!res.ok) throw new Error(data.error?.message || "Erreur d'upload");
       return data.secure_url;
-    } catch (err: any) {
-      alert(err.message);
+    } catch (err) {
+      alert(err instanceof Error ? err.message : "Erreur d'upload");
       return null;
     } finally {
       setUploading(false);
@@ -86,7 +100,10 @@ export function EventForm({ initialData, onSubmit, onCancel, isSubmitting }: Eve
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
+    <form
+      onSubmit={handleSubmit((data) => onSubmit({ ...data, dateISO: data.startDateISO }))}
+      className="flex flex-col gap-6"
+    >
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div className="flex flex-col gap-1">
           <label className="text-xs font-medium text-text-2">Slug</label>
@@ -109,13 +126,23 @@ export function EventForm({ initialData, onSubmit, onCancel, isSubmitting }: Eve
         </div>
 
         <div className="flex flex-col gap-1">
-          <label className="text-xs font-medium text-text-2">Date (YYYY-MM-DD)</label>
+          <label className="text-xs font-medium text-text-2">Date de début (YYYY-MM-DD)</label>
           <input
-            {...register("dateISO")}
+            {...register("startDateISO")}
             placeholder="2026-05-15"
             className="rounded-md border border-border bg-surface-1 px-3 py-2 text-sm text-text focus:outline-none focus:ring-1 focus:ring-ring"
           />
-          {errors.dateISO && <span className="text-[10px] text-red-500">{errors.dateISO.message as string}</span>}
+          {errors.startDateISO && <span className="text-[10px] text-red-500">{errors.startDateISO.message as string}</span>}
+        </div>
+
+        <div className="flex flex-col gap-1">
+          <label className="text-xs font-medium text-text-2">Date de fin (YYYY-MM-DD)</label>
+          <input
+            {...register("endDateISO")}
+            placeholder="2026-05-16"
+            className="rounded-md border border-border bg-surface-1 px-3 py-2 text-sm text-text focus:outline-none focus:ring-1 focus:ring-ring"
+          />
+          {errors.endDateISO && <span className="text-[10px] text-red-500">{errors.endDateISO.message as string}</span>}
         </div>
 
         <div className="flex flex-col gap-1">

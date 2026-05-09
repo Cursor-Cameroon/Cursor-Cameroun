@@ -35,7 +35,7 @@ export async function POST(request: Request) {
             <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e5e5e5; border-radius: 8px; padding: 24px; color: #000000;">
               <h2 style="font-size: 20px; font-weight: 600; margin-bottom: 16px; border-bottom: 1px solid #e5e5e5; padding-bottom: 12px;">Nouvel événement ajouté</h2>
               <p><strong>Nom:</strong> ${newEvent.name}</p>
-              <p><strong>Date:</strong> ${newEvent.dateISO}</p>
+              <p><strong>Date:</strong> ${newEvent.startDateISO}${newEvent.endDateISO !== newEvent.startDateISO ? ` → ${newEvent.endDateISO}` : ""}</p>
               <p><strong>Ville:</strong> ${newEvent.city}</p>
               <p><strong>Description:</strong> ${newEvent.shortDescription}</p>
               <div style="margin-top: 24px; padding: 16px; background-color: #f5f5f5; border-radius: 4px;">
