@@ -48,7 +48,7 @@ export default function AdminEventsPage() {
         setEditingEvent(undefined);
       } else {
         const error = await res.json();
-        alert(error.error || "Une erreur est survenue");
+        alert(`${error.error || "Une erreur est survenue"}\n\nDétails: ${error.details || ""}`);
       }
     } catch (error) {
       console.error("Failed to save event", error);
