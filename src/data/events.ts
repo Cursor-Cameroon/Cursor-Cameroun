@@ -23,7 +23,7 @@ export type Event = {
   program?: string[];
   projects?: EventLink[];
   links?: EventLink[];
-  gallery?: { src: string; alt: string; caption: string }[];
+  gallery?: { src: string; alt: string; caption?: string }[];
   coverImage?: string;
 };
 
