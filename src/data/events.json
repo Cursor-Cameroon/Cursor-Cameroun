@@ -40,7 +40,7 @@
     "city": "En ligne",
     "shortDescription": "Construire le site officiel de la communauté Cursor Cameroun en une semaine.",
     "participants": 25,
-    "status": "upcoming",
+    "status": "ongoing",
     "projects": [
       {
         "label": "Repo du site",
@@ -68,10 +68,16 @@
         "src": "/gallery/EVENTS.png",
         "alt": "Mini Hackathon #1 · démo finale du site",
         "caption": "Démonstration finale du site — Mini Hackathon #1"
+      },
+      {
+        "src": "https://res.cloudinary.com/dpsgcq2lm/image/upload/v1778319545/b1uw82ogezi5oovfzeou.png",
+        "alt": "cursor-code",
+        "caption": "Brainstorm avec Cursor Code"
       }
     ],
     "venue": "",
-    "lumaUrl": ""
+    "lumaUrl": "",
+    "coverImage": "https://res.cloudinary.com/dpsgcq2lm/image/upload/v1778319501/bdimu7c0dbklmxnn8mjb.png"
   },
   {
     "slug": "cafe-cursor-yaounde-00",
