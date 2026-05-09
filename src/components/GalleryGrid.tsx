@@ -10,9 +10,14 @@ export type GalleryPhoto = {
   caption: string;
   eventSlug: string;
   eventName: string;
-  dateISO: string;
+  startDateISO: string;
+  endDateISO: string;
   city: string;
 };
+
+function formatEventDateRange(startDateISO: string, endDateISO: string) {
+  return startDateISO === endDateISO ? startDateISO : `${startDateISO} → ${endDateISO}`;
+}
 
 export function GalleryGrid({
   photos,
@@ -48,7 +53,7 @@ export function GalleryGrid({
             <div className="p-3">
               <div className="text-xs font-medium text-text">{p.eventName}</div>
               <div className="mt-1 text-xs text-text-2">
-                {p.city} · {p.dateISO}
+                {p.city} · {formatEventDateRange(p.startDateISO, p.endDateISO)}
               </div>
             </div>
           </button>
@@ -73,7 +78,7 @@ export function GalleryGrid({
                   {current.eventName}
                 </div>
                 <div className="text-xs text-text-2">
-                  {current.city} · {current.dateISO}
+                  {current.city} · {formatEventDateRange(current.startDateISO, current.endDateISO)}
                 </div>
               </div>
               <button

@@ -29,7 +29,8 @@ export default async function GalleryPage({
       caption: g.caption,
       eventSlug: e.slug,
       eventName: e.name,
-      dateISO: e.dateISO,
+      startDateISO: e.startDateISO,
+      endDateISO: e.endDateISO,
       city: e.city,
     })),
   );
@@ -37,7 +38,7 @@ export default async function GalleryPage({
   const filtered = photos.filter(
     (p) =>
       (filter === "all" || p.eventSlug === filter) &&
-      (dateFilter === "all" || p.dateISO.startsWith(dateFilter)),
+      (dateFilter === "all" || p.startDateISO.startsWith(dateFilter)),
   );
 
   const eventOptions = allEvents.filter((e) => (e.gallery ?? []).length > 0).map(
@@ -45,7 +46,7 @@ export default async function GalleryPage({
   );
 
   const dateOptions = [
-    ...new Set(photos.map((p) => p.dateISO.substring(0, 7))),
+    ...new Set(photos.map((p) => p.startDateISO.substring(0, 7))),
   ].sort();
 
   const fmt = new Intl.DateTimeFormat(locale, { month: "long", year: "numeric" });

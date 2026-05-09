@@ -9,6 +9,10 @@ function percent(current: number, target: number) {
   return Math.max(0, Math.min(100, Math.round((current / target) * 100)));
 }
 
+function formatEventDateRange(startDateISO: string, endDateISO: string) {
+  return startDateISO === endDateISO ? startDateISO : `${startDateISO} → ${endDateISO}`;
+}
+
 export default async function RoadmapPage({
   searchParams,
 }: {
@@ -26,7 +30,7 @@ export default async function RoadmapPage({
     ? events.filter((e) => e.city === cityName)
     : [];
 
-  const timeline = [...events].sort((a, b) => a.dateISO.localeCompare(b.dateISO));
+  const timeline = [...events].sort((a, b) => a.startDateISO.localeCompare(b.startDateISO));
 
   return (
     <div className="flex flex-col gap-10">
@@ -96,7 +100,7 @@ export default async function RoadmapPage({
                   <li key={e.slug} className="rounded-md border border-border bg-bg-2 p-4">
                     <div className="flex items-start justify-between gap-3">
                       <div className="font-medium text-text">{e.name}</div>
-                      <div className="text-xs text-text-2">{e.dateISO}</div>
+                      <div className="text-xs text-text-2">{formatEventDateRange(e.startDateISO, e.endDateISO)}</div>
                     </div>
                     <div className="mt-2 text-text-2">{e.shortDescription}</div>
                     <div className="mt-3">
@@ -132,7 +136,7 @@ export default async function RoadmapPage({
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div className="text-sm font-medium text-text">{e.name}</div>
-                    <div className="text-xs text-text-2">{e.dateISO}</div>
+                    <div className="text-xs text-text-2">{formatEventDateRange(e.startDateISO, e.endDateISO)}</div>
                   </div>
                   <div className="mt-2 text-sm text-text-2">
                     {e.city} · {e.status === "upcoming" ? t("events.statusUpcoming") : t("events.statusPast")}

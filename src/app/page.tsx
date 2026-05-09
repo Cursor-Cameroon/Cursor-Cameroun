@@ -7,6 +7,10 @@ import { getPastEvents, getUpcomingEvents } from "@/data/events";
 import { CITY_POINTS } from "@/data/roadmap";
 import { FadeIn } from "@/components/FadeIn";
 
+function formatEventDateRange(startDateISO: string, endDateISO: string) {
+  return startDateISO === endDateISO ? startDateISO : `${startDateISO} → ${endDateISO}`;
+}
+
 export default async function Home() {
   const t = await getTranslations();
   const upcoming = getUpcomingEvents().slice(0, 3);
@@ -120,7 +124,7 @@ export default async function Home() {
                   </span>
                 </div>
                 <p className="mt-2 text-sm text-text-2">
-                  {e.city} · {e.dateISO}
+                  {e.city} · {formatEventDateRange(e.startDateISO, e.endDateISO)}
                   {e.participants ? ` · ${e.participants} ${t("events.participants")}` : ""}
                 </p>
                 <p className="mt-4 text-sm leading-6 text-text">{e.shortDescription}</p>
@@ -167,7 +171,7 @@ export default async function Home() {
                   </span>
                 </div>
                 <p className="mt-2 text-sm text-text-2">
-                  {e.city} · {e.dateISO}
+                  {e.city} · {formatEventDateRange(e.startDateISO, e.endDateISO)}
                   {e.participants ? ` · ${e.participants} ${t("events.participants")}` : ""}
                 </p>
                 <p className="mt-4 text-sm leading-6 text-text">{e.shortDescription}</p>
