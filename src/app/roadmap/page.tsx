@@ -49,7 +49,7 @@ export default async function RoadmapPage({
     .sort((a, b) => a.startDateISO.localeCompare(b.startDateISO));
 
   return (
-    <div className="flex flex-col gap-6 h-[85vh] min-h-[600px] overflow-hidden">
+    <div className="flex flex-col gap-6">
       <FadeIn>
         <header className="flex flex-col gap-2 flex-shrink-0">
           <h1 className="text-3xl font-semibold tracking-tight text-text">
@@ -59,9 +59,14 @@ export default async function RoadmapPage({
         </header>
       </FadeIn>
 
-      <div className="flex flex-col md:flex-row gap-6 flex-1 min-h-0 overflow-hidden">
+      {/* Mobile: Map on top */}
+      <div className="block md:hidden h-[45vh] min-h-[280px] w-full rounded-lg overflow-hidden shadow-md border border-border">
+        <RoadmapMapSection points={CITY_POINTS} selectedCityId={selectedCityId} />
+      </div>
+
+      <div className="flex flex-col md:flex-row gap-6 md:h-[75vh] md:min-h-[600px] md:overflow-hidden">
         {/* Left Panel: Timeline & Progress */}
-        <div className="w-full md:w-96 flex-shrink-0 flex flex-col gap-6 overflow-y-auto pr-2 custom-scrollbar">
+        <div className="w-full md:w-96 flex-shrink-0 flex flex-col gap-6 overflow-y-auto pr-2">
           
           {selectedCity ? (
             <FadeIn>
@@ -164,8 +169,8 @@ export default async function RoadmapPage({
           </FadeIn>
         </div>
 
-        {/* Right Panel: Map */}
-        <FadeIn direction="right" className="flex-1 h-full min-h-[400px]">
+        {/* Right Panel: Map — Desktop only */}
+        <FadeIn direction="right" className="hidden md:block flex-1 h-full min-h-[400px]">
           <div className="h-full w-full rounded-lg overflow-hidden shadow-md">
             <RoadmapMapSection points={CITY_POINTS} selectedCityId={selectedCityId} />
           </div>
