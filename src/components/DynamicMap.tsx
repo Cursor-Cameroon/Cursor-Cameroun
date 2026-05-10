@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Tooltip, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -54,6 +54,28 @@ const REGION_DEFINITIONS: ReadonlyArray<{ id: RegionId; regionFr: string; coordi
   { id: "south", regionFr: "Sud", coordinate: [11.15, 2.9167] },
 ];
 
+function isLonLat(value: unknown): value is LonLat {
+  return (
+    Array.isArray(value) &&
+    value.length === 2 &&
+    Number.isFinite(value[0]) &&
+    Number.isFinite(value[1])
+  );
+}
+
+function getCityCoordinate(cityId?: string | null): LonLat | null {
+  if (!cityId || !Object.prototype.hasOwnProperty.call(CITY_COORDINATES, cityId)) {
+    return null;
+  }
+
+  const coordinate = (CITY_COORDINATES as Record<string, unknown>)[cityId];
+  return isLonLat(coordinate) ? coordinate : null;
+}
+
+function toLatLng([lon, lat]: LonLat): L.LatLngTuple {
+  return [lat, lon];
+}
+
 const activeIcon = new L.DivIcon({
   html: `<div style="background-color: var(--cursor-text); width: 14px; height: 14px; border-radius: 50%; border: 2.5px solid var(--cursor-bg); box-shadow: 0 0 0 1px var(--cursor-border);"></div>`,
   className: "",
@@ -72,10 +94,25 @@ function MapController({ selectedCityId }: { selectedCityId?: string | null }) {
   const map = useMap();
 
   useEffect(() => {
-    if (selectedCityId && CITY_COORDINATES[selectedCityId]) {
-      const [lon, lat] = CITY_COORDINATES[selectedCityId];
-      map.flyTo([lat, lon], 7, { animate: true, duration: 1.5 });
+    const coordinate = getCityCoordinate(selectedCityId);
+
+    if (!coordinate) {
+      return;
     }
+
+    const frame = window.requestAnimationFrame(() => {
+      const container = map.getContainer();
+      const size = map.getSize();
+
+      if (container.offsetParent === null || size.x <= 0 || size.y <= 0) {
+        return;
+      }
+
+      map.invalidateSize({ animate: false });
+      map.setView(toLatLng(coordinate), 7, { animate: false });
+    });
+
+    return () => window.cancelAnimationFrame(frame);
   }, [selectedCityId, map]);
 
   return null;
@@ -96,22 +133,22 @@ export default function DynamicMap({
   const allMarkers = REGION_DEFINITIONS.map(region => {
     const cityPoint = points.find(p => p.region === region.regionFr);
     
-    // If the region has an active event, use the city point data
-    if (cityPoint && cityPoint.kind === "active") {
-      const coordinate = CITY_COORDINATES[cityPoint.id] || region.coordinate;
+    // If the region has a corresponding city point in our data, use it
+    if (cityPoint) {
+      const coordinate = getCityCoordinate(cityPoint.id) ?? region.coordinate;
       return {
         id: cityPoint.id,
         name: cityPoint.name,
         region: cityPoint.region,
         lat: coordinate[1],
         lon: coordinate[0],
-        kind: "active",
+        kind: cityPoint.kind,
         events: cityPoint.events,
         members: cityPoint.members
       };
     }
     
-    // Otherwise, mark it as target region
+    // Fallback for regions without a defined city point (should not happen with current data)
     return {
       id: region.id,
       name: region.regionFr,
@@ -145,7 +182,7 @@ export default function DynamicMap({
           icon={marker.kind === "active" ? activeIcon : targetIcon}
           eventHandlers={{
             click: () => {
-              if (onSelectCity && marker.kind === "active") {
+              if (onSelectCity) {
                 onSelectCity(marker.id);
               }
             },

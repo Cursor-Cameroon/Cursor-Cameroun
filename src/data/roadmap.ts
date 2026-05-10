@@ -19,9 +19,9 @@ export const CITY_POINTS: CityPoint[] = [
     id: "douala",
     name: "Douala",
     region: "Littoral",
-    kind: "target",
-    events: 0,
-    members: 0,
+    kind: "active",
+    events: 1,
+    members: 100,
   },
   {
     id: "buea",
@@ -90,7 +90,7 @@ export const CITY_POINTS: CityPoint[] = [
 ];
 
 export const GOALS_2026: RoadmapGoal[] = [
-  { label: "Villes couvertes", current: 1, target: 6 },
+  { label: "Villes couvertes", current: 2, target: 6 },
   { label: "Événements organisés", current: 3, target: 18 },
   { label: "Membres", current: 180, target: 1000 },
 ];
