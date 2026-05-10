@@ -25,6 +25,7 @@ export type Event = {
   links?: EventLink[];
   gallery?: { src: string; alt: string; caption?: string }[];
   coverImage?: string;
+  about?: string;
 };
 
 const DATA_PATH = path.join(process.cwd(), "src/data/events.json");

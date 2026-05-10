@@ -22,20 +22,23 @@ export function RoadmapMapSection({
   );
 
   return (
-    <div className="flex flex-col gap-3">
-      <CameroonMap
-        points={points}
-        onSelectCity={(id) => {
-          router.replace(
-            { pathname, query: { city: id } },
-            { scroll: false },
-          );
-        }}
-      />
+    <div className="flex flex-col h-full w-full">
+      <div className="flex-1 min-h-[400px]">
+        <CameroonMap
+          points={points}
+          selectedCityId={selectedCityId}
+          onSelectCity={(id) => {
+            router.replace(
+              { pathname, query: { city: id } },
+              { scroll: false },
+            );
+          }}
+        />
+      </div>
       {selected ? (
-        <div className="text-xs text-text-2">
+        <div className="mt-3 text-xs text-text-2 px-1">
           {t("roadmap.selectedCityLabel")}{" "}
-          <span className="text-text">{selected.name}</span>
+          <span className="text-text font-medium">{selected.name}</span>
         </div>
       ) : null}
     </div>

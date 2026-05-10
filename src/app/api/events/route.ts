@@ -24,9 +24,12 @@ export async function POST(request: Request) {
     events.push(newEvent);
     saveEvents(events);
 
-    // Send notification email
+            // Send notification email
     if (resend) {
       try {
+        const origin = new URL(request.url).origin;
+        const eventLink = `${origin}/events/${newEvent.slug}`;
+        
         await resend.emails.send({
           from: "Cursor Cameroun <onboarding@resend.dev>",
           to: [process.env.CONTACT_EMAIL || "hello@cursor-cameroun.org"],
@@ -39,7 +42,10 @@ export async function POST(request: Request) {
               <p><strong>Ville:</strong> ${newEvent.city}</p>
               <p><strong>Description:</strong> ${newEvent.shortDescription}</p>
               <div style="margin-top: 24px; padding: 16px; background-color: #f5f5f5; border-radius: 4px;">
-                <p style="margin: 0;">L'événement a été ajouté avec succès à la base de données.</p>
+                <p style="margin: 0 0 12px 0;">L'événement a été ajouté avec succès à la base de données.</p>
+                <a href="${eventLink}" style="display: inline-block; padding: 10px 18px; background-color: #000000; color: #ffffff; text-decoration: none; border-radius: 6px; font-size: 14px; font-weight: 500;">
+                  Voir l'événement
+                </a>
               </div>
             </div>
           `,

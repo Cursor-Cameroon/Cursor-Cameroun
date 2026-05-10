@@ -12,7 +12,7 @@
     "writeUs": "Write to us",
     "rights": "All rights reserved.",
     "line": "Black · White · Gray — Official Brand Guidelines",
-    "admin": "Admin"
+    "admin": "ALD"
   },
   "nav": {
     "home": "Home",
@@ -60,7 +60,8 @@
     "detailProjects": "Built projects",
     "detailLinks": "Links",
     "detailPhotos": "Photos",
-    "addressOnRegistration": "Register to view address"
+    "addressOnRegistration": "Register to view address",
+    "detailAbout": "About this event"
   },
   "gallery": {
     "title": "Gallery",
@@ -135,7 +136,8 @@
     "noProjects": "No projects listed yet.",
     "orgGithub": "GitHub organization",
     "groupWhatsapp": "WhatsApp group",
-    "linkedin": "LinkedIn"
+    "linkedin": "LinkedIn",
+    "luma": "Luma Page"
   },
   "contact": {
     "title": "Contact",

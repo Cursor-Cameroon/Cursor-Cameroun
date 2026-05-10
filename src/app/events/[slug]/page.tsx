@@ -106,6 +106,17 @@ export default async function EventDetailPage({
         </div>
       </header>
 
+      {event.about && (
+        <section className="rounded-lg border border-border bg-surface-1 p-8">
+          <h2 className="text-lg font-semibold text-text">
+            {t("events.detailAbout")}
+          </h2>
+          <p className="mt-4 text-sm leading-7 text-text-2 whitespace-pre-wrap">
+            {event.about}
+          </p>
+        </section>
+      )}
+
       {event.program?.length ? (
         <section className="rounded-lg border border-border bg-surface-1 p-8">
           <h2 className="text-lg font-semibold text-text">

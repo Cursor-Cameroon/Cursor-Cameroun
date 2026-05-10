@@ -120,6 +120,17 @@ export default async function CommunityPage() {
                 </a>
                 <div className="mt-1 text-xs text-text-2">{LINKS.linkedin}</div>
               </li>
+              <li>
+                <a
+                  className="font-medium text-text underline decoration-border hover:decoration-text"
+                  href={LINKS.luma}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  luma
+                </a>
+                <div className="mt-1 text-xs text-text-2">{LINKS.luma}</div>
+              </li>
             </ul>
           </div>
         </FadeIn>

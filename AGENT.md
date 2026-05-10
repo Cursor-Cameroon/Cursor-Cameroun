@@ -32,9 +32,9 @@ Ce projet a été conçu et développé **intégralement avec Cursor**, conform�
 - [x] Renforcer la conformité charte N&B (suppression des accents rouge/vert dans l'UI principale).
 - [x] Compléter les textes traduits FR/EN manquants.
 - [x] Ajouter des metadata de page sur les pages principales.
+- [x] Finaliser la migration stricte des assets images vers WebP/AVIF.
+- [x] Renforcer la carte pour couvrir explicitement les 10 régions comme demandé au CDC.
 
 ## À finaliser (Post-Hackathon)
-- Finaliser la migration stricte des assets images vers WebP/AVIF.
-- Renforcer la carte pour couvrir explicitement les 10 régions comme demandé au CDC.
 - Mesurer et documenter les scores Lighthouse (perf/accessibilité/SEO) sur mobile + desktop.
 

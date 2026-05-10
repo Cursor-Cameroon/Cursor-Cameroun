@@ -24,6 +24,7 @@ const eventSchema = z.object({
     caption: z.string().optional(),
   })).optional(),
   coverImage: z.string().optional(),
+  about: z.string().optional(),
 }).refine((data) => data.endDateISO >= data.startDateISO, {
   message: "La date de fin doit être postérieure ou égale à la date de début",
   path: ["endDateISO"],
@@ -237,6 +238,16 @@ export function EventForm({ initialData, onSubmit, onCancel, isSubmitting }: Eve
           className="rounded-md border border-border bg-surface-1 px-3 py-2 text-sm text-text focus:outline-none focus:ring-1 focus:ring-ring"
         />
         {errors.shortDescription && <span className="text-[10px] text-text-2">{errors.shortDescription.message as string}</span>}
+      </div>
+
+      <div className="flex flex-col gap-1">
+        <label className="text-xs font-medium text-text-2">À propos (description longue)</label>
+        <textarea
+          {...register("about")}
+          rows={4}
+          placeholder="Contexte, objectifs, déroulement détaillé de l'événement..."
+          className="rounded-md border border-border bg-surface-1 px-3 py-2 text-sm text-text focus:outline-none focus:ring-1 focus:ring-ring"
+        />
       </div>
 
       {/* Gallery Section */}

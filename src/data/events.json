@@ -24,20 +24,24 @@
       }
     ],
     "gallery": [],
-    "coverImage": "https://res.cloudinary.com/dpsgcq2lm/image/upload/v1778332023/tiwnvanhbvjmxggugddp.jpg"
+    "coverImage": "https://res.cloudinary.com/dpsgcq2lm/image/upload/v1778332023/tiwnvanhbvjmxggugddp.jpg",
+    "about": "Le Café Cursor #02 est une rencontre mensuelle dédiée aux développeurs camerounais souhaitant maîtriser le développement assisté par l'IA avec Cursor. Au programme : démos en direct, mini-challenges en binôme, et partage de workflows. Accessible à tous les niveaux, du débutant à l'expert."
   },
   {
     "slug": "night-of-code-yaounde-01",
     "name": "Night of Code · Yaoundé #01",
-    "dateISO": "2026-06-07",
-    "startDateISO": "2026-06-07",
-    "endDateISO": "2026-06-07",
+    "dateISO": "2026-07-15",
+    "startDateISO": "2026-07-15",
+    "endDateISO": "2026-07-16",
     "city": "Yaoundé",
-    "venue": "Lieu à confirmer",
+    "venue": "EasyOffice",
     "shortDescription": "Soirée coding : construire un produit complet avec Cursor, en équipe.",
     "participants": 60,
     "status": "upcoming",
-    "lumaUrl": "https://lu.ma/cursor-cameroun-02"
+    "lumaUrl": "https://luma.com/vtf4mmhg",
+    "about": "Code Night #1 est une nuit de développement intensif organisée à Yaoundé dans le cadre du programme Cursor Community.\n\nLe 11 Mai, 60 développeurs — étudiants, juniors et seniors — se réunissent dans un espace de coworking pour construire des projets open source en équipe, en utilisant Cursor Pro.\n\nPas de slides. Pas de workshops. On code. Après une phase de networking et de formation des équipes, chaque groupe définit son projet, son architecture et son MVP, puis entre en phase de build pendant toute la nuit.\n\nÀ 6h du matin, chaque équipe présente une démo live de son projet. L'objectif est simple : montrer ce qu'un développeur assisté par l'IA peut réellement construire en quelques heures.",
+    "gallery": [],
+    "coverImage": "https://res.cloudinary.com/dpsgcq2lm/image/upload/v1778389986/gpfezyitrgmc9ozb48ov.avif"
   },
   {
     "slug": "mini-hackathon-1",
@@ -85,7 +89,8 @@
     ],
     "venue": "",
     "lumaUrl": "",
-    "coverImage": "https://res.cloudinary.com/dpsgcq2lm/image/upload/v1778319501/bdimu7c0dbklmxnn8mjb.png"
+    "coverImage": "https://res.cloudinary.com/dpsgcq2lm/image/upload/v1778319501/bdimu7c0dbklmxnn8mjb.png",
+    "about": "Le Mini Hackathon #1 est l'événement fondateur de Cursor Cameroun : construire le site officiel de la communauté en une semaine. Une quinzaine de développeurs ont collaboré à distance, en utilisant Cursor comme outil principal de développement, pour produire ce site que vous consultez en ce moment."
   },
   {
     "slug": "cafe-cursor-yaounde-00",
@@ -128,7 +133,8 @@
     ],
     "venue": "Maison du café",
     "lumaUrl": "",
-    "coverImage": "https://res.cloudinary.com/dpsgcq2lm/image/upload/v1778318854/on1mcb5by8tr4wvbgxoj.jpg"
+    "coverImage": "https://res.cloudinary.com/dpsgcq2lm/image/upload/v1778318854/on1mcb5by8tr4wvbgxoj.jpg",
+    "about": "Le premier Café Cursor de Yaoundé a réuni des développeurs passionnés autour de Cursor AI. L'événement a été l'occasion de présenter les fonctionnalités clés de l'outil, d'échanger des astuces et de mettre en place les bases de la communauté camerounaise."
   },
   {
     "slug": "cafe-cursor-douala-01",
@@ -141,6 +147,7 @@
     "shortDescription": "moment de detente et presentation",
     "participants": 100,
     "status": "upcoming",
-    "lumaUrl": "https://lu.ma/cursor-cameroun-01"
+    "lumaUrl": "https://lu.ma/cursor-cameroun-01",
+    "about": "Le Café Cursor s'invite à Douala ! Ce premier événement dans la capitale économique du Cameroun rassemblera des développeurs pour une session de découverte et de présentation de Cursor AI, dans une ambiance détendue et conviviale."
   }
 ]

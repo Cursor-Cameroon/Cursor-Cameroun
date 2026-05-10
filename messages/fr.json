@@ -12,7 +12,7 @@
     "writeUs": "Nous écrire",
     "rights": "Tous droits réservés.",
     "line": "Noir · Blanc · Gris — Charte Graphique Officielle",
-    "admin": "Admin"
+    "admin": "ALD"
   },
   "nav": {
     "home": "Accueil",
@@ -60,7 +60,8 @@
     "detailProjects": "Projets construits",
     "detailLinks": "Liens",
     "detailPhotos": "Photos",
-    "addressOnRegistration": "S’inscrire pour voir l’adresse"
+    "addressOnRegistration": "S’inscrire pour voir l’adresse",
+    "detailAbout": "À propos de cet événement"
   },
   "gallery": {
     "title": "Galerie",
