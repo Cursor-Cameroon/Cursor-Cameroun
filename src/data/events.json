@@ -161,5 +161,23 @@
     "endTime": "17:00",
     "gallery": [],
     "coverImage": ""
+  },
+  {
+    "slug": "cursor-hackathon",
+    "name": "Cursor Hackathon",
+    "startDateISO": "2026-06-03",
+    "endDateISO": "2026-06-03",
+    "startTime": "11:00",
+    "endTime": "06:00",
+    "city": "Yaounde",
+    "venue": "UY1",
+    "shortDescription": "HACKACTHON  ENTRE ETUDIANT , DEVELOPPEUR",
+    "participants": 100,
+    "status": "upcoming",
+    "lumaUrl": "",
+    "gallery": [],
+    "coverImage": "https://res.cloudinary.com/dpsgcq2lm/image/upload/v1778399935/nlqycdivuve9yvti1gcr.avif",
+    "about": "",
+    "dateISO": "2026-06-03"
   }
 ]
