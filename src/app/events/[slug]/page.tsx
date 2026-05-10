@@ -59,7 +59,9 @@ export default async function EventDetailPage({
               </div>
               <div className="flex flex-col justify-center py-1">
                 <span className="text-base font-semibold text-text capitalize">{fullDate}</span>
-                <span className="text-sm text-text-2">9:30 - 16:00</span>
+                <span className="text-sm text-text-2">
+                  {event.startTime && event.endTime ? `${event.startTime} - ${event.endTime}` : event.startTime || event.endTime || ""}
+                </span>
               </div>
             </div>
 

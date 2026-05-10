@@ -12,6 +12,8 @@ const eventSchema = z.object({
   name: z.string().min(3, "Name must be at least 3 characters"),
   startDateISO: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Format must be YYYY-MM-DD"),
   endDateISO: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Format must be YYYY-MM-DD"),
+  startTime: z.string().optional(),
+  endTime: z.string().optional(),
   city: z.string().min(2, "City is required"),
   venue: z.string().optional(),
   shortDescription: z.string().min(10, "Description must be at least 10 characters"),
@@ -30,7 +32,8 @@ const eventSchema = z.object({
   path: ["endDateISO"],
 });
 
-type EventFormValues = z.infer<typeof eventSchema>;
+type EventFormInputValues = z.input<typeof eventSchema>;
+type EventFormValues = z.output<typeof eventSchema>;
 
 type EventFormProps = {
   initialData?: Event;
@@ -46,7 +49,7 @@ export function EventForm({ initialData, onSubmit, onCancel, isSubmitting }: Eve
     control,
     setValue,
     formState: { errors },
-  } = useForm<EventFormValues>({
+  } = useForm<EventFormInputValues, unknown, EventFormValues>({
     resolver: zodResolver(eventSchema),
     defaultValues: initialData
       ? {
@@ -144,6 +147,24 @@ export function EventForm({ initialData, onSubmit, onCancel, isSubmitting }: Eve
             className="rounded-md border border-border bg-surface-1 px-3 py-2 text-sm text-text focus:outline-none focus:ring-1 focus:ring-ring"
           />
           {errors.endDateISO && <span className="text-[10px] text-text-2">{errors.endDateISO.message as string}</span>}
+        </div>
+
+        <div className="flex flex-col gap-1">
+          <label className="text-xs font-medium text-text-2">Heure de début</label>
+          <input
+            type="time"
+            {...register("startTime")}
+            className="rounded-md border border-border bg-surface-1 px-3 py-2 text-sm text-text focus:outline-none focus:ring-1 focus:ring-ring"
+          />
+        </div>
+
+        <div className="flex flex-col gap-1">
+          <label className="text-xs font-medium text-text-2">Heure de fin</label>
+          <input
+            type="time"
+            {...register("endTime")}
+            className="rounded-md border border-border bg-surface-1 px-3 py-2 text-sm text-text focus:outline-none focus:ring-1 focus:ring-ring"
+          />
         </div>
 
         <div className="flex flex-col gap-1">

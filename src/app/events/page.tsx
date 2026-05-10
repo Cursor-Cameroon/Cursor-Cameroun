@@ -133,7 +133,9 @@ export default async function EventsPage({
                   </div>
                   <div className="flex flex-col justify-center py-0.5">
                     <span className="text-sm font-semibold text-text capitalize">{fullDate}</span>
-                    <span className="text-xs text-text-2">9:30 - 16:00</span>
+                    <span className="text-xs text-text-2">
+                      {e.startTime && e.endTime ? `${e.startTime} - ${e.endTime}` : e.startTime || e.endTime || ""}
+                    </span>
                   </div>
                 </div>
 

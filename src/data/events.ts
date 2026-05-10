@@ -14,6 +14,8 @@ export type Event = {
   dateISO: string; // kept for backward compatibility
   startDateISO: string; // YYYY-MM-DD
   endDateISO: string; // YYYY-MM-DD
+  startTime?: string; // HH:mm
+  endTime?: string; // HH:mm
   city: string;
   venue?: string;
   shortDescription: string;

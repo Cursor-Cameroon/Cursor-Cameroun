@@ -37,7 +37,7 @@ Ce projet a été conçu et développé **intégralement avec Cursor**, conform�
 - [x] Implémenter le champ "À propos" détaillé pour chaque événement.
 - [x] Ajouter des filtres interactifs (soft navigation) sur la sidebar Roadmap.
 - [x] Optimiser le layout Roadmap pour mobile (Map en haut, Timeline en bas).
+- [x] Mesurer et documenter les scores Lighthouse (perf/accessibilité/SEO) sur mobile + desktop.
 
 ## À finaliser (Post-Hackathon)
-- Mesurer et documenter les scores Lighthouse (perf/accessibilité/SEO) sur mobile + desktop.
 
