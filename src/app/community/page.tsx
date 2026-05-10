@@ -71,6 +71,14 @@ export default async function CommunityPage() {
               </a>
               <a
                 className="inline-flex items-center justify-center rounded-md border border-border bg-surface-1 px-4 py-2 text-sm font-medium text-text hover:bg-surface-2"
+                href={LINKS.luma}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {t("community.luma")}
+              </a>
+              <a
+                className="inline-flex items-center justify-center rounded-md border border-border bg-surface-1 px-4 py-2 text-sm font-medium text-text hover:bg-surface-2"
                 href={LINKS.linkedin}
                 target="_blank"
                 rel="noreferrer"
@@ -127,7 +135,7 @@ export default async function CommunityPage() {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  luma
+                  {t("community.luma")}
                 </a>
                 <div className="mt-1 text-xs text-text-2">{LINKS.luma}</div>
               </li>
