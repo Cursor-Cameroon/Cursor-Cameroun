@@ -163,21 +163,21 @@
     "coverImage": ""
   },
   {
-    "slug": "cursor-hackathon",
-    "name": "Cursor Hackathon",
+    "slug": "cursor-hackathon-00",
+    "name": "Cursor Hackathon - Journées Universitaire de l'INformatique",
     "startDateISO": "2026-06-03",
     "endDateISO": "2026-06-03",
     "startTime": "11:00",
-    "endTime": "06:00",
+    "endTime": "18:59",
     "city": "Yaounde",
     "venue": "UY1",
-    "shortDescription": "HACKACTHON  ENTRE ETUDIANT , DEVELOPPEUR",
+    "shortDescription": "Cursor Hackathon - Journées Universitaire de l'INformatique à l'Université de Yaounde 1",
     "participants": 100,
     "status": "upcoming",
-    "lumaUrl": "",
+    "lumaUrl": "https://luma.com/j5oqd8os",
     "gallery": [],
-    "coverImage": "https://res.cloudinary.com/dpsgcq2lm/image/upload/v1778399935/nlqycdivuve9yvti1gcr.avif",
-    "about": "",
+    "coverImage": "https://res.cloudinary.com/dpsgcq2lm/image/upload/v1778400636/fu0eskewcztbfmjerqo2.avif",
+    "about": "Le Cursor Hackathon débarque à la Journée Universitaire de l'Informatique.\n\nC'est le plus grand événement tech universitaire du Cameroun — 5 grandes universités réunies, chercheurs, entrepreneurs, builders, développeurs juniors et seniors, et étudiants en informatique dans une même salle.\n\nCette année, le hackathon est entièrement organisé par Cursor Cameroun. Les équipes construisent des projets ambitieux avec Cursor. Les meilleurs repartent avec des prix.\n\nCe que tu vas vivre :\n\n→ Un hackathon compétitif avec Cursor pour tous les participants\n\n→ Des équipes de 3 à 5 personnes, des projets construits de zéro\n\n→ Des prix pour les meilleurs projets → Une communauté de développeurs de 5 universités camerounaises\n\n→ Du networking sérieux entre devs, chercheurs et entrepreneurs\n\nC'est gratuit. Viens avec ton laptop.",
     "dateISO": "2026-06-03"
   }
 ]
