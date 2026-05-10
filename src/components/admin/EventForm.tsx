@@ -15,7 +15,7 @@ const eventSchema = z.object({
   city: z.string().min(2, "City is required"),
   venue: z.string().optional(),
   shortDescription: z.string().min(10, "Description must be at least 10 characters"),
-  participants: z.number().optional(),
+  participants: z.coerce.number().optional(),
   status: z.enum(["upcoming", "past", "ongoing"]),
   lumaUrl: z.string().url().optional().or(z.literal("")),
   gallery: z.array(z.object({
@@ -181,12 +181,7 @@ export function EventForm({ initialData, onSubmit, onCancel, isSubmitting }: Eve
           <label className="text-xs font-medium text-text-2">Participants</label>
           <input
             type="number"
-            {...register("participants", {
-              setValueAs: (value) =>
-                value === "" || Number.isNaN(Number(value))
-                  ? undefined
-                  : Number(value),
-            })}
+            {...register("participants")}
             className="rounded-md border border-border bg-surface-1 px-3 py-2 text-sm text-text focus:outline-none focus:ring-1 focus:ring-ring"
           />
         </div>
