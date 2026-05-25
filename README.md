@@ -7,7 +7,7 @@ Plateforme communautaire officielle de Cursor Cameroun
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.x-38bdf8?style=flat-square&logo=tailwindcss)](https://tailwindcss.com/)
 [![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](./LICENSE)
 
-[Demo Live](https://cursor-cameroun.vercel.app) · [Signaler un bug](https://github.com/cursor-cameroun/cursor-cameroun/issues) · [Proposer une feature](https://github.com/cursor-cameroun/cursor-cameroun/issues)
+[Demo Live](https://cursor-cameroun-nine.vercel.app) · [Signaler un bug](https://github.com/cursor-cameroun/cursor-cameroun/issues) · [Proposer une feature](https://github.com/cursor-cameroun/cursor-cameroun/issues)
 
 ---
 
