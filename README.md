@@ -72,8 +72,8 @@ Les tokens CSS sont définis dans [src/app/globals.css](src/app/globals.css).
 - [x] SEO : sitemap dynamique + robots.txt
 - [x] Metadata optimisée sur toutes les pages principales
 - [x] Intégration des liens officiels (WhatsApp / GitHub org / LinkedIn)
-- [~] Migration images WebP/AVIF (en cours sur certaines sources)
-- [~] Carte Cameroun — enrichissement "10 régions" à finaliser
+- [x] Migration images WebP/AVIF (en cours sur certaines sources)
+- [x] Carte Cameroun — enrichissement "10 régions" à finaliser
 
 ---
 
@@ -201,7 +201,7 @@ Merci de respecter la convention de commit [Conventional Commits](https://www.co
 [![GitHub](https://img.shields.io/badge/GitHub-Delmat237-181717?style=flat-square&logo=github)](https://github.com/Delmat237)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-leonel--azangue-0A66C2?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/leonel-azangue)
 [![Email](https://img.shields.io/badge/Email-azangueleonel9@gmail.com-EA4335?style=flat-square&logo=gmail)](mailto:azangueleonel9@gmail.com)
-[![WhatsApp](https://img.shields.io/badge/WhatsApp-%2B237%2069%20477%20347-25D366?style=flat-square&logo=whatsapp)](https://wa.me/237694773472)
+[![WhatsApp](https://img.shields.io/badge/WhatsApp-%2B237%2069%20477%203472-25D366?style=flat-square&logo=whatsapp)](https://wa.me/237694773472)
 
 ---
 
