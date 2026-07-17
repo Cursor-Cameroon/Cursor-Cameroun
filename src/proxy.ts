@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import createMiddleware from "next-intl/middleware";
 import { defaultLocale, locales } from "./i18n/routing";
+import { SESSION_COOKIE, verifySessionToken } from "./lib/auth";
 
 const intlMiddleware = createMiddleware({
   locales: [...locales],
@@ -8,21 +9,19 @@ const intlMiddleware = createMiddleware({
   localePrefix: "as-needed",
 });
 
-export default function middleware(request: NextRequest) {
+export default async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Protect admin routes
-  // Next-intl routes look like /fr/admin or /admin (if default locale)
-  // We check if the path contains /admin
+  // Protège les routes admin (/admin ou /fr/admin selon la locale).
   const isAdminRoute = pathname.includes("/admin");
 
   if (isAdminRoute) {
-    const session = request.cookies.get("admin_session")?.value;
-    
-    // If no session, redirect to login
-    // We need to preserve the locale if present
-    if (!session) {
-      const locale = locales.find(l => pathname.startsWith(`/${l}/`)) || defaultLocale;
+    const token = request.cookies.get(SESSION_COOKIE)?.value;
+    const valid = await verifySessionToken(token);
+
+    // Session absente ou signature/expiration invalide -> retour au login.
+    if (!valid) {
+      const locale = locales.find((l) => pathname.startsWith(`/${l}/`)) || defaultLocale;
       const loginUrl = new URL(`/${locale}/login`, request.url);
       return NextResponse.redirect(loginUrl);
     }

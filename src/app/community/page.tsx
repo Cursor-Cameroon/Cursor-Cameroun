@@ -17,7 +17,7 @@ export async function generateMetadata() {
 
 export default async function CommunityPage() {
   const t = await getTranslations();
-  const events = getEvents();
+  const events = await getEvents();
   const projects = Array.from(
     new Map(
       events.flatMap((e) => e.projects ?? [])

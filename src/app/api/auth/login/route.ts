@@ -1,5 +1,10 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
+import {
+  SESSION_COOKIE,
+  SESSION_COOKIE_OPTIONS,
+  createSessionToken,
+} from "@/lib/auth";
 
 export async function POST(request: Request) {
   try {
@@ -13,18 +18,12 @@ export async function POST(request: Request) {
 
     if (password === adminPassword) {
       const cookieStore = await cookies();
-      cookieStore.set("admin_session", "true", {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "lax",
-        maxAge: 60 * 60 * 24 * 7, // 1 week
-        path: "/",
-      });
+      cookieStore.set(SESSION_COOKIE, await createSessionToken(), SESSION_COOKIE_OPTIONS);
       return NextResponse.json({ success: true });
     }
 
     return NextResponse.json({ error: "Mot de passe incorrect" }, { status: 401 });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

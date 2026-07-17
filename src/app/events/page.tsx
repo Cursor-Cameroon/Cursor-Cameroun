@@ -27,9 +27,11 @@ export default async function EventsPage({
   const sp = (await searchParams) ?? {};
   const tab = typeof sp.tab === "string" ? sp.tab : "upcoming";
 
-  const upcoming = getUpcomingEvents();
-  const ongoing = getOngoingEvents();
-  const past = getPastEvents();
+  const [upcoming, ongoing, past] = await Promise.all([
+    getUpcomingEvents(),
+    getOngoingEvents(),
+    getPastEvents(),
+  ]);
   const events = tab === "past" ? past : tab === "ongoing" ? ongoing : upcoming;
 
   return (

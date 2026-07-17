@@ -13,7 +13,7 @@ export default async function EventDetailPage({
   const t = await getTranslations();
   const locale = await getLocale();
   const { slug } = await params;
-  const event = getEvent(slug);
+  const event = await getEvent(slug);
   if (!event) notFound();
 
   const startDate = new Date(event.startDateISO);

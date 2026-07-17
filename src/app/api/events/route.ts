@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { getEvents, saveEvents, type Event } from "@/data/events";
+import { getEvents, createEvent, eventExists, type Event } from "@/data/events";
+import { isAuthenticated } from "@/lib/auth";
 import { Resend } from "resend";
 
 const resend = process.env.RESEND_API_KEY 
@@ -7,22 +8,24 @@ const resend = process.env.RESEND_API_KEY
   : null;
 
 export async function GET() {
-  const events = getEvents();
+  const events = await getEvents();
   return NextResponse.json(events);
 }
 
 export async function POST(request: Request) {
   try {
+    if (!(await isAuthenticated(request))) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const newEvent: Event = await request.json();
-    const events = getEvents();
-    
+
     // Simple validation: check if slug already exists
-    if (events.find(e => e.slug === newEvent.slug)) {
+    if (await eventExists(newEvent.slug)) {
       return NextResponse.json({ error: "Slug already exists" }, { status: 400 });
     }
 
-    events.push(newEvent);
-    saveEvents(events);
+    await createEvent(newEvent);
 
             // Send notification email
     if (resend) {

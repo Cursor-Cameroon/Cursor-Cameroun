@@ -35,7 +35,7 @@ export default async function RoadmapPage({
   const sp = (await searchParams) ?? {};
   const selectedCityId = typeof sp.city === "string" ? sp.city : null;
 
-  const allEvents = getEvents();
+  const allEvents = await getEvents();
   const statusFilter = typeof sp.status === "string" ? sp.status : "all";
 
   const selectedCity = CITY_POINTS.find((c) => c.id === selectedCityId) ?? null;

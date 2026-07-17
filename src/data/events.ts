@@ -1,5 +1,6 @@
-import fs from "fs";
-import path from "path";
+import { eq } from "drizzle-orm";
+import { db } from "@/db";
+import { events as eventsTable } from "@/db/schema";
 
 export type EventStatus = "upcoming" | "past" | "ongoing";
 
@@ -30,9 +31,8 @@ export type Event = {
   about?: string;
 };
 
-const DATA_PATH = path.join(process.cwd(), "src/data/events.json");
-
-function normalizeEvent(event: Partial<Event>): Event {
+/** Assure la cohérence des champs de date (dateISO ↔ startDateISO ↔ endDateISO). */
+export function normalizeEvent(event: Partial<Event>): Event {
   const fallbackDate = event.dateISO ?? "";
   const startDateISO = event.startDateISO ?? fallbackDate;
   const endDateISO = event.endDateISO ?? startDateISO;
@@ -45,39 +45,77 @@ function normalizeEvent(event: Partial<Event>): Event {
   };
 }
 
-export function getEvents(): Event[] {
-  try {
-    const data = fs.readFileSync(DATA_PATH, "utf-8");
-    const parsed = JSON.parse(data) as Partial<Event>[];
-    return parsed.map(normalizeEvent);
-  } catch (error) {
-    console.error("Error reading events.json:", error);
-    return [];
-  }
+export async function getEvents(): Promise<Event[]> {
+  const rows = await db.select().from(eventsTable);
+  return rows.map((row) => normalizeEvent(row.data));
 }
 
-export function saveEvents(events: Event[]) {
-  fs.writeFileSync(DATA_PATH, JSON.stringify(events, null, 2), "utf-8");
+export async function getEvent(slug: string): Promise<Event | null> {
+  const [row] = await db
+    .select()
+    .from(eventsTable)
+    .where(eq(eventsTable.slug, slug))
+    .limit(1);
+  return row ? normalizeEvent(row.data) : null;
 }
 
-export function getEvent(slug: string) {
-  return getEvents().find((e) => e.slug === slug) ?? null;
+export async function eventExists(slug: string): Promise<boolean> {
+  return (await getEvent(slug)) !== null;
 }
 
-export function getUpcomingEvents() {
-  return getEvents()
+/** Insère un nouvel événement. Retourne l'événement normalisé. */
+export async function createEvent(input: Event): Promise<Event> {
+  const event = normalizeEvent(input);
+  await db.insert(eventsTable).values(toRow(event));
+  return event;
+}
+
+/** Met à jour (merge) un événement existant. Retourne `null` si introuvable. */
+export async function updateEvent(
+  slug: string,
+  patch: Partial<Event>
+): Promise<Event | null> {
+  const current = await getEvent(slug);
+  if (!current) return null;
+
+  const merged = normalizeEvent({ ...current, ...patch, slug });
+  await db.update(eventsTable).set(toRow(merged)).where(eq(eventsTable.slug, slug));
+  return merged;
+}
+
+/** Supprime un événement. Retourne `true` si une ligne a été supprimée. */
+export async function deleteEvent(slug: string): Promise<boolean> {
+  const deleted = await db
+    .delete(eventsTable)
+    .where(eq(eventsTable.slug, slug))
+    .returning({ slug: eventsTable.slug });
+  return deleted.length > 0;
+}
+
+function toRow(event: Event) {
+  return {
+    slug: event.slug,
+    status: event.status,
+    startDateISO: event.startDateISO,
+    endDateISO: event.endDateISO,
+    data: event,
+  };
+}
+
+export async function getUpcomingEvents(): Promise<Event[]> {
+  return (await getEvents())
     .filter((e) => e.status === "upcoming")
     .sort((a, b) => a.startDateISO.localeCompare(b.startDateISO));
 }
 
-export function getOngoingEvents() {
-  return getEvents()
+export async function getOngoingEvents(): Promise<Event[]> {
+  return (await getEvents())
     .filter((e) => e.status === "ongoing")
     .sort((a, b) => a.startDateISO.localeCompare(b.startDateISO));
 }
 
-export function getPastEvents() {
-  return getEvents()
+export async function getPastEvents(): Promise<Event[]> {
+  return (await getEvents())
     .filter((e) => e.status === "past")
     .sort((a, b) => b.endDateISO.localeCompare(a.endDateISO));
 }

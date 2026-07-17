@@ -33,7 +33,7 @@ export default async function GalleryPage({
   const filter = typeof sp.event === "string" ? sp.event : "all";
   const dateFilter = typeof sp.date === "string" ? sp.date : "all";
 
-  const allEvents = getEvents();
+  const allEvents = await getEvents();
   const photos: GalleryPhoto[] = allEvents.flatMap((e) =>
     (e.gallery ?? []).map((g) => ({
       src: g.src,

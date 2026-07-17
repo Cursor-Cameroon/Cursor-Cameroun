@@ -25,11 +25,15 @@ export async function generateMetadata() {
 
 export default async function Home() {
   const t = await getTranslations();
-  const upcoming = getUpcomingEvents().slice(0, 3);
-  const past = getPastEvents().slice(0, 2);
+  const [upcomingAll, pastAll] = await Promise.all([
+    getUpcomingEvents(),
+    getPastEvents(),
+  ]);
+  const upcoming = upcomingAll.slice(0, 3);
+  const past = pastAll.slice(0, 2);
 
   const members = CITY_POINTS.reduce((acc, c) => acc + (c.members ?? 0), 0);
-  const eventsCount = upcoming.length + getPastEvents().length;
+  const eventsCount = upcoming.length + pastAll.length;
   const citiesCovered = CITY_POINTS.filter((c) => c.kind === "active").length;
 
   return (

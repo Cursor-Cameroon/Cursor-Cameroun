@@ -1,23 +1,25 @@
 import { NextResponse } from "next/server";
-import { getEvents, saveEvents, type Event } from "@/data/events";
+import { updateEvent, deleteEvent, type Event } from "@/data/events";
+import { isAuthenticated } from "@/lib/auth";
 
 export async function PUT(
   request: Request,
   { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
+    if (!(await isAuthenticated(request))) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const { slug } = await params;
-    const updatedEvent: Event = await request.json();
-    const events = getEvents();
-    
-    const index = events.findIndex(e => e.slug === slug);
-    if (index === -1) {
+    const updatedEvent: Partial<Event> = await request.json();
+
+    const merged = await updateEvent(slug, updatedEvent);
+    if (!merged) {
       return NextResponse.json({ error: "Event not found" }, { status: 404 });
     }
 
-    events[index] = { ...events[index], ...updatedEvent };
-    saveEvents(events);
-    return NextResponse.json(events[index]);
+    return NextResponse.json(merged);
   } catch (error) {
     console.error("Error updating event:", error);
     return NextResponse.json({ error: "Invalid data", details: error instanceof Error ? error.message : String(error) }, { status: 400 });
@@ -29,19 +31,19 @@ export async function DELETE(
   { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
+    if (!(await isAuthenticated(request))) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const { slug } = await params;
-    let events = getEvents();
-    
-    const initialLength = events.length;
-    events = events.filter(e => e.slug !== slug);
-    
-    if (events.length === initialLength) {
+
+    const deleted = await deleteEvent(slug);
+    if (!deleted) {
       return NextResponse.json({ error: "Event not found" }, { status: 404 });
     }
 
-    saveEvents(events);
     return NextResponse.json({ success: true });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }
