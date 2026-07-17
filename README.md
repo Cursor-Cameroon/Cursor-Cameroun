@@ -201,7 +201,7 @@ Merci de respecter la convention de commit [Conventional Commits](https://www.co
 [![GitHub](https://img.shields.io/badge/GitHub-Delmat237-181717?style=flat-square&logo=github)](https://github.com/Delmat237)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-leonel--azangue-0A66C2?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/leonel-azangue)
 [![Email](https://img.shields.io/badge/Email-azangueleonel9@gmail.com-EA4335?style=flat-square&logo=gmail)](mailto:azangueleonel9@gmail.com)
-[![WhatsApp](https://img.shields.io/badge/WhatsApp-%2B237%2069%20477%20347-25D366?style=flat-square&logo=whatsapp)](https://wa.me/23769477347)
+[![WhatsApp](https://img.shields.io/badge/WhatsApp-%2B237%2069%20477%20347-25D366?style=flat-square&logo=whatsapp)](https://wa.me/237694773472)
 
 ---
 
