@@ -9,7 +9,7 @@
     "venue": "Lieu à confirmer",
     "shortDescription": "Découverte de Cursor, setup, workflows et mini-défis en binôme.",
     "participants": 50,
-    "status": "upcoming",
+    "status": "past",
     "lumaUrl": "https://lu.ma/cursor-cameroun-01",
     "program": [
       "Accueil & setup",
@@ -39,7 +39,7 @@
     "venue": "EasyOffice",
     "shortDescription": "Soirée coding : construire un produit complet avec Cursor, en équipe.",
     "participants": 60,
-    "status": "upcoming",
+    "status": "past",
     "lumaUrl": "https://luma.com/vtf4mmhg",
     "about": "Code Night #1 est une nuit de développement intensif organisée à Yaoundé dans le cadre du programme Cursor Community.\n\nLe 11 Mai, 60 développeurs — étudiants, juniors et seniors — se réunissent dans un espace de coworking pour construire des projets open source en équipe, en utilisant Cursor Pro.\n\nPas de slides. Pas de workshops. On code. Après une phase de networking et de formation des équipes, chaque groupe définit son projet, son architecture et son MVP, puis entre en phase de build pendant toute la nuit.\n\nÀ 6h du matin, chaque équipe présente une démo live de son projet. L'objectif est simple : montrer ce qu'un développeur assisté par l'IA peut réellement construire en quelques heures.",
     "gallery": [],
@@ -173,9 +173,55 @@
     "venue": "UY1",
     "shortDescription": "Cursor Hackathon - Journées Universitaire de l'INformatique à l'Université de Yaounde 1",
     "participants": 100,
-    "status": "upcoming",
+    "status": "past",
     "lumaUrl": "https://luma.com/j5oqd8os",
-    "gallery": [],
+    "gallery": [
+      {
+        "src": "https://res.cloudinary.com/dpsgcq2lm/image/upload/v1784283820/WhatsApp_Image_2026-07-17_at_11.19.06_AM_ouwcuk.jpg",
+        "alt": "IMG",
+        "caption": ""
+      },
+      {
+        "src": "https://res.cloudinary.com/dpsgcq2lm/image/upload/v1784283817/WhatsApp_Image_2026-07-17_at_11.19.07_AM_cp0spk.jpg",
+        "alt": "IMG",
+        "caption": ""
+      },
+      {
+        "src": "https://res.cloudinary.com/dpsgcq2lm/image/upload/v1784283818/WhatsApp_Image_2026-07-17_at_11.19.071_AM_f5da7l.jpg",
+        "alt": "IMG",
+        "caption": ""
+      },
+      {
+        "src": "https://res.cloudinary.com/dpsgcq2lm/image/upload/v1784283817/WhatsApp_Image_2026-07-17_at_11.19.072_AM_jaw7dm.jpg",
+        "alt": "IMG",
+        "caption": ""
+      },
+      {
+        "src": "https://res.cloudinary.com/dpsgcq2lm/image/upload/v1784283817/WhatsApp_Image_2026-07-17_at_11.199.06_AM_r4olrf.jpg",
+        "alt": "IMG",
+        "caption": ""
+      },
+      {
+        "src": "https://res.cloudinary.com/dpsgcq2lm/image/upload/v1784283816/WhatsApp_Image_2026-07-17_at_11.19.05_AM_x8ggan.jpg",
+        "alt": "IMG",
+        "caption": ""
+      },
+      {
+        "src": "https://res.cloudinary.com/dpsgcq2lm/image/upload/v1784283816/WhatsApp_Image_2026-07-17_at_11.19.081_AM_ct3773.jpg",
+        "alt": "IMG",
+        "caption": ""
+      },
+      {
+        "src": "https://res.cloudinary.com/dpsgcq2lm/image/upload/v1784283816/WhatsApp_Image_2026-07-17_at_11.198.06_AM_wwzrak.jpg",
+        "alt": "IMG",
+        "caption": ""
+      },
+      {
+        "src": "https://res.cloudinary.com/dpsgcq2lm/image/upload/v1784283816/WhatsApp_Image_2026-07-17_at_11.19.08_AM_aeoqqc.jpg",
+        "alt": "IMG",
+        "caption": ""
+      }
+    ],
     "coverImage": "https://res.cloudinary.com/dpsgcq2lm/image/upload/v1778400636/fu0eskewcztbfmjerqo2.avif",
     "about": "Le Cursor Hackathon débarque à la Journée Universitaire de l'Informatique.\n\nC'est le plus grand événement tech universitaire du Cameroun — 5 grandes universités réunies, chercheurs, entrepreneurs, builders, développeurs juniors et seniors, et étudiants en informatique dans une même salle.\n\nCette année, le hackathon est entièrement organisé par Cursor Cameroun. Les équipes construisent des projets ambitieux avec Cursor. Les meilleurs repartent avec des prix.\n\nCe que tu vas vivre :\n\n→ Un hackathon compétitif avec Cursor pour tous les participants\n\n→ Des équipes de 3 à 5 personnes, des projets construits de zéro\n\n→ Des prix pour les meilleurs projets → Une communauté de développeurs de 5 universités camerounaises\n\n→ Du networking sérieux entre devs, chercheurs et entrepreneurs\n\nC'est gratuit. Viens avec ton laptop.",
     "dateISO": "2026-06-03"
@@ -194,7 +240,7 @@
     "status": "upcoming",
     "lumaUrl": "https://luma.com/cursor-65wa",
     "gallery": [],
-    "coverImage": "https://res.cloudinary.com/dpsgcqWhatsApp Image 2026-07-17 at 10.49.09 AMWhatsApp Image 2026-07-17 at 10.49.09 AM2lm/image/upload/v1784281774/mcilz7r45skwdqpnwsrc.jpg",
+    "coverImage": "https://res.cloudinary.com/dpsgcq2lm/image/upload/v1784281774/mcilz7r45skwdqpnwsrc.jpg",
     "about": "Rejoignez-nous le 18 juillet pour un meetup exclusif dédié à l’écosystème Cursor. Que vous soyez un utilisateur quotidien ou curieux de passer à la vitesse supérieure, nous allons explorer comment transformer votre workflow de développement.\n\nAu programme :\n\nBest Practices : Maîtriser Cursor pour coder 10x plus vite.\n\nCursor SDK : Étendez les capacités de votre éditeur favori.\n\nProtocole MCP (Model Context Protocol) : Connectez vos données et vos outils à l’IA comme jamais auparavant.\n\nNouvelle Ère : Découverte d'une nouvelle méthodologie pour bâtir des applications modernes.\n\nPourquoi venir ?\nEn plus du networking avec d'autres passionnés, vous repartez peut-être avec des crédits Cursor ou des swags exclusifs !\n\nNe manquez pas ce rendez-vous pour redéfinir votre stack de demain.",
     "dateISO": "2026-07-18"
   }
