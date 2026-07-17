@@ -56,7 +56,7 @@
     "city": "En ligne",
     "shortDescription": "Construire le site officiel de la communauté Cursor Cameroun en une semaine.",
     "participants": 25,
-    "status": "ongoing",
+    "status": "past",
     "projects": [
       {
         "label": "Repo du site",
@@ -179,5 +179,23 @@
     "coverImage": "https://res.cloudinary.com/dpsgcq2lm/image/upload/v1778400636/fu0eskewcztbfmjerqo2.avif",
     "about": "Le Cursor Hackathon débarque à la Journée Universitaire de l'Informatique.\n\nC'est le plus grand événement tech universitaire du Cameroun — 5 grandes universités réunies, chercheurs, entrepreneurs, builders, développeurs juniors et seniors, et étudiants en informatique dans une même salle.\n\nCette année, le hackathon est entièrement organisé par Cursor Cameroun. Les équipes construisent des projets ambitieux avec Cursor. Les meilleurs repartent avec des prix.\n\nCe que tu vas vivre :\n\n→ Un hackathon compétitif avec Cursor pour tous les participants\n\n→ Des équipes de 3 à 5 personnes, des projets construits de zéro\n\n→ Des prix pour les meilleurs projets → Une communauté de développeurs de 5 universités camerounaises\n\n→ Du networking sérieux entre devs, chercheurs et entrepreneurs\n\nC'est gratuit. Viens avec ton laptop.",
     "dateISO": "2026-06-03"
+  },
+  {
+    "slug": "cursor-meetup-yaounde",
+    "name": "Cursor Meetup Yaounde",
+    "startDateISO": "2026-07-18",
+    "endDateISO": "2026-07-18",
+    "startTime": "13:30",
+    "endTime": "17:15",
+    "city": "Yaounde",
+    "venue": "Amphi 300, UY1",
+    "shortDescription": "Rejoignez-nous le 18 juillet pour un meetup exclusif dédié à l’écosystème Cursor. Que vous soyez un utilisateur quotidien ou curieux de passer à la vitesse supérieure, nous allons explorer comment transformer votre workflow de développement.\n",
+    "participants": 130,
+    "status": "upcoming",
+    "lumaUrl": "https://luma.com/cursor-65wa",
+    "gallery": [],
+    "coverImage": "https://res.cloudinary.com/dpsgcqWhatsApp Image 2026-07-17 at 10.49.09 AMWhatsApp Image 2026-07-17 at 10.49.09 AM2lm/image/upload/v1784281774/mcilz7r45skwdqpnwsrc.jpg",
+    "about": "Rejoignez-nous le 18 juillet pour un meetup exclusif dédié à l’écosystème Cursor. Que vous soyez un utilisateur quotidien ou curieux de passer à la vitesse supérieure, nous allons explorer comment transformer votre workflow de développement.\n\nAu programme :\n\nBest Practices : Maîtriser Cursor pour coder 10x plus vite.\n\nCursor SDK : Étendez les capacités de votre éditeur favori.\n\nProtocole MCP (Model Context Protocol) : Connectez vos données et vos outils à l’IA comme jamais auparavant.\n\nNouvelle Ère : Découverte d'une nouvelle méthodologie pour bâtir des applications modernes.\n\nPourquoi venir ?\nEn plus du networking avec d'autres passionnés, vous repartez peut-être avec des crédits Cursor ou des swags exclusifs !\n\nNe manquez pas ce rendez-vous pour redéfinir votre stack de demain.",
+    "dateISO": "2026-07-18"
   }
 ]
